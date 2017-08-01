@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html ng-app="hub" class="ng-scope"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="readme-deploy" content="84f31a6db82be21101781b61697385231ea6e840"><meta name="readme-version" content="2.1"><script async="" src="JDBC%20Driver_files/analytics.js"></script><script src="JDBC%20Driver_files/bugsnag-3.js" data-apikey="8593a4bcc5e114a9e5a28c4adcc73374"></script><title>JDBC Driver</title><meta name="description" content="Apache Ignite is a memory-centric platform that combines a distributed SQL database with a key-value data grid that is ACID-compliant and horizontally scalable and includes compute, machine learning and streaming capabilities."><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta property="og:title" content="JDBC Driver"><meta property="og:description" content="Connect to Ignite using standard JDBC driver."><link href="https://files.readme.io/tbZLB0TKRcuZ0jeLhg5O_apache-ignite_250x250.png" rel="shortcut icon" type="image/x-icon"><link rel="canonical" href="https://apacheignite.gridgain.org/v2.1/docs/jdbc-driver"><!-- Application styles--><link rel="stylesheet" href="JDBC%20Driver_files/bundle-hub2.css"><!-- Custom CSS--><style>a {
+  color: #ec1c24;
+}
+a:hover {
+  color: #950d12;
+}
+a.text-muted:hover {
+  color: #ec1c24;
+}
+.btn.btn-primary {
+  background-color: #ec1c24;
+}
+.btn.btn-primary:hover {
+  background-color: #950d12;
+}
+.theme-line #hub-landing-top h2 {
+  color: #ec1c24;
+}
+#hub-landing-top .btn:hover {
+  color: #ec1c24;
+}
+.theme-line #hub-landing-top .btn:hover {
+  color: #fff;
+}
+.theme-solid header#hub-header #header-top {
+  background-color: #ec1c24;
+}
+.theme-solid.header-gradient header#hub-header #header-top {
+  background: linear-gradient(to bottom, #ec1c24, #ad0e15);
+}
+.theme-solid.header-custom header#hub-header #header-top {
+  background-image: url("undefined");
+}
+.theme-line header#hub-header #header-top {
+  border-bottom-color: #ec1c24;
+}
+.theme-line header#hub-header #header-top .btn {
+  background-color: #ec1c24;
+}
+header#hub-header #header-top #header-logo {
+  width: 96px;
+  height: 40px;
+  margin-top: 0px;
+  background-image: url("https://files.readme.io/QL8bAJF8T72zRehEoy2w_apache-ignite_600x250.png");
+}
+nav#hub-sidebar ul a.active {
+  background-color: #ec1c24;
+}
+#hub-subheader-parent #hub-subheader .hub-subheader-breadcrumbs .dropdown-menu a:hover {
+  background-color: #ec1c24;
+}
+.discussion .submit-vote.submit-vote-parent.voted a.submit-vote-button {
+  background-color: #ec1c24;
+}
+section#hub-discuss .discussion a .discuss-body h4 {
+  color: #ec1c24;
+}
+section#hub-discuss .discussion a:hover .discuss-body h4 {
+  color: #950d12;
+}
+#hub-subheader-parent #hub-subheader.sticky-header.sticky {
+  border-bottom-color: #ec1c24;
+}
+#hub-subheader-parent #hub-subheader.sticky-header.sticky .search-box {
+  border-bottom-color: #ec1c24;
+}
+#hub-search-results h3 em {
+  color: #ec1c24;
+}
+.main_background,
+.tag-item {
+  background: #ec1c24 !important;
+}
+.main_background:hover {
+  background: #950d12 !important;
+}
+.main_color {
+  color: #ec1c24 !important;
+}
+.main_color_hover:hover {
+  color: #ec1c24 !important;
+}
+section#hub-discuss h1 {
+  color: #ec1c24;
+}
+#hub-reference .hub-api .api-manager .param-table .param-item .param-item-info .param-item-table .param-item-input textarea:focus,
+#hub-reference .hub-api .api-manager .param-table .param-item .param-item-info .param-item-table .param-item-input input[type="text"]:focus,
+#hub-reference .hub-api .api-manager .param-table .param-item .param-item-info .param-item-table .param-item-input input[type="number"]:focus {
+  border: 1px solid #ec1c24;
+}
+#hub-reference .hub-api .api-definition .api-try-it-out.active {
+  border-color: #ec1c24;
+  background-color: #ec1c24;
+}
+#hub-reference .hub-api .api-definition .api-try-it-out.active:hover {
+  background-color: #950d12;
+  border-color: #950d12;
+}
+#hub-reference .hub-api .api-definition .api-try-it-out:hover {
+  border-color: #ec1c24;
+  color: #ec1c24;
+}
+#hub-reference .hub-reference .hub-reference-section .hub-reference-left header .hub-reference-edit:hover {
+  color: #ec1c24;
+}
+</style><!-- TODO: Escape!--><style id="customCSS">
+</style><style type="text/css">/** initial setup **/
+.nano {
+  position : relative;
+  width    : 100%;
+  height   : 100%;
+  overflow : hidden;
+}
+.nano > .nano-content {
+  position      : absolute;
+  overflow      : scroll;
+  overflow-x    : hidden;
+  top           : 0;
+  right         : 0;
+  bottom        : 0;
+  left          : 0;
+}
+.nano > .nano-content:focus {
+  outline: thin dotted;
+}
+.nano > .nano-content::-webkit-scrollbar {
+  display: none;
+}
+.has-scrollbar > .nano-content::-webkit-scrollbar {
+  display: block;
+}
+.nano > .nano-pane {
+  background : rgba(0,0,0,.25);
+  position   : absolute;
+  width      : 10px;
+  right      : 0;
+  top        : 0;
+  bottom     : 0;
+  visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
+  opacity    : .01;
+  -webkit-transition    : .2s;
+  -moz-transition       : .2s;
+  -o-transition         : .2s;
+  transition            : .2s;
+  -moz-border-radius    : 5px;
+  -webkit-border-radius : 5px;
+  border-radius         : 5px;
+}
+.nano > .nano-pane > .nano-slider {
+  background: #444;
+  background: rgba(0,0,0,.5);
+  position              : relative;
+  margin                : 0 1px;
+  -moz-border-radius    : 3px;
+  -webkit-border-radius : 3px;
+  border-radius         : 3px;
+}
+.nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
+  visibility : visible\9; /* Target only IE7 and IE8 with this hack */
+  opacity    : 0.99;
+}
+</style><style type="text/css">.ns-popover-list-theme {
+  box-sizing: border-box;
+  border: solid 1px #d2d2d2;
+  border-radius: 3px;
+  z-index: 100;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2); }
+  .ns-popover-list-theme ul, .ns-popover-list-theme .list {
+    padding: 0;
+    margin: 0.625rem 0;
+    display: block; }
+  .ns-popover-list-theme li, .ns-popover-list-theme .list-item {
+    list-style-type: none; }
+    .ns-popover-list-theme li a, .ns-popover-list-theme .list-item a {
+      padding: 0.1875rem 0.625rem;
+      display: block; }
+      .ns-popover-list-theme li a:hover, .ns-popover-list-theme .list-item a:hover {
+        background-color: #f5f5f5; }
+
+.ns-popover-tooltip-theme {
+  box-sizing: border-box;
+  z-index: 100;
+  background-color: transparent; }
+  .ns-popover-tooltip-theme .ns-popover-tooltip {
+    box-sizing: border-box;
+    border: solid 1px #d2d2d2;
+    border-radius: 3px;
+    background-color: #fff;
+    padding: 0.5625rem 0.875rem;
+    max-width: 20rem;
+    font-size: 0.875rem;
+    -webkit-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+    margin: 10px; }
+    .ns-popover-tooltip-theme .ns-popover-tooltip ul {
+      padding: 0;
+      margin: 0.625rem 0;
+      display: block; }
+    .ns-popover-tooltip-theme .ns-popover-tooltip li {
+      list-style-type: none; }
+      .ns-popover-tooltip-theme .ns-popover-tooltip li a {
+        padding: 0.1875rem 0.625rem;
+        display: block; }
+        .ns-popover-tooltip-theme .ns-popover-tooltip li a:hover {
+          background-color: #f5f5f5; }
+  .ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 11px;
+    border-color: transparent;
+    position: absolute;
+    border-bottom-color: #d2d2d2;
+    left: 50%;
+    top: -11px;
+    margin-left: -11px; }
+    .ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle:after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border: solid 10px;
+      border-color: transparent;
+      position: absolute; }
+    .ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle:after {
+      border-bottom-color: #fff;
+      border-top-width: 0;
+      top: 1px;
+      margin-left: -10px; }
+  .ns-popover-tooltip-theme.ns-popover-top-placement .triangle {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 11px;
+    border-color: transparent;
+    position: absolute;
+    border-top-color: #d2d2d2;
+    left: 50%;
+    bottom: -11px;
+    margin-left: -11px; }
+    .ns-popover-tooltip-theme.ns-popover-top-placement .triangle:after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border: solid 10px;
+      border-color: transparent;
+      position: absolute; }
+    .ns-popover-tooltip-theme.ns-popover-top-placement .triangle:after {
+      border-top-color: #fff;
+      border-bottom-width: 0;
+      bottom: 1px;
+      margin-left: -10px; }
+  .ns-popover-tooltip-theme.ns-popover-right-placement .triangle {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 11px;
+    border-color: transparent;
+    position: absolute;
+    border-right-color: #d2d2d2;
+    top: 50%;
+    left: -11px;
+    margin-top: -11px; }
+    .ns-popover-tooltip-theme.ns-popover-right-placement .triangle:after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border: solid 10px;
+      border-color: transparent;
+      position: absolute; }
+    .ns-popover-tooltip-theme.ns-popover-right-placement .triangle:after {
+      border-right-color: #fff;
+      border-left-width: 0;
+      left: 1px;
+      bottom: -10px; }
+  .ns-popover-tooltip-theme.ns-popover-left-placement .triangle {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 11px;
+    border-color: transparent;
+    position: absolute;
+    border-left-color: #d2d2d2;
+    top: 50%;
+    right: -11px;
+    margin-top: -11px; }
+    .ns-popover-tooltip-theme.ns-popover-left-placement .triangle:after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border: solid 10px;
+      border-color: transparent;
+      position: absolute; }
+    .ns-popover-tooltip-theme.ns-popover-left-placement .triangle:after {
+      border-left-color: #fff;
+      border-right-width: 0;
+      right: 1px;
+      bottom: -10px; }
+  .ns-popover-tooltip-theme.ns-popover-left-align .ns-popover-tooltip {
+    margin-left: 0; }
+  .ns-popover-tooltip-theme.ns-popover-right-align .ns-popover-tooltip {
+    margin-right: 0; }
+  .ns-popover-tooltip-theme.ns-popover-top-align .ns-popover-tooltip {
+    margin-top: 0; }
+  .ns-popover-tooltip-theme.ns-popover-bottom-align .ns-popover-tooltip {
+    margin-bottom: 0; }
+</style><style type="text/css">.ns-popover-list-theme {
+  box-sizing: border-box;
+  border: solid 1px #d2d2d2;
+  border-radius: 3px;
+  z-index: 100;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+.ns-popover-list-theme ul,
+.ns-popover-list-theme .list {
+  padding: 0;
+  margin: 0.625rem 0;
+  display: block;
+}
+.ns-popover-list-theme li,
+.ns-popover-list-theme .list-item {
+  list-style-type: none;
+}
+.ns-popover-list-theme li a,
+.ns-popover-list-theme .list-item a {
+  padding: 0.1875rem 0.625rem;
+  display: block;
+}
+.ns-popover-list-theme li a:hover,
+.ns-popover-list-theme .list-item a:hover {
+  background-color: #f5f5f5;
+}
+.ns-popover-tooltip-theme {
+  box-sizing: border-box;
+  z-index: 100;
+  background-color: transparent;
+}
+.ns-popover-tooltip-theme .ns-popover-tooltip {
+  box-sizing: border-box;
+  border: solid 1px #d2d2d2;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 0.5625rem 0.875rem;
+  max-width: 20rem;
+  font-size: 0.875rem;
+  -webkit-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+.ns-popover-tooltip-theme .ns-popover-tooltip ul {
+  padding: 0;
+  margin: 0.625rem 0;
+  display: block;
+}
+.ns-popover-tooltip-theme .ns-popover-tooltip li {
+  list-style-type: none;
+}
+.ns-popover-tooltip-theme .ns-popover-tooltip li a {
+  padding: 0.1875rem 0.625rem;
+  display: block;
+}
+.ns-popover-tooltip-theme .ns-popover-tooltip li a:hover {
+  background-color: #f5f5f5;
+}
+.ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 11px;
+  border-color: transparent;
+  position: absolute;
+  border-bottom-color: #d2d2d2;
+  left: 50%;
+  top: -11px;
+  margin-left: -11px;
+}
+.ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: transparent;
+  position: absolute;
+}
+.ns-popover-tooltip-theme.ns-popover-bottom-placement .triangle:after {
+  border-bottom-color: #fff;
+  border-top-width: 0;
+  top: 1px;
+  margin-left: -10px;
+}
+.ns-popover-tooltip-theme.ns-popover-top-placement .triangle {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 11px;
+  border-color: transparent;
+  position: absolute;
+  border-top-color: #d2d2d2;
+  left: 50%;
+  bottom: -11px;
+  margin-left: -11px;
+}
+.ns-popover-tooltip-theme.ns-popover-top-placement .triangle:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: transparent;
+  position: absolute;
+}
+.ns-popover-tooltip-theme.ns-popover-top-placement .triangle:after {
+  border-top-color: #fff;
+  border-bottom-width: 0;
+  bottom: 1px;
+  margin-left: -10px;
+}
+.ns-popover-tooltip-theme.ns-popover-right-placement .triangle {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 11px;
+  border-color: transparent;
+  position: absolute;
+  border-right-color: #d2d2d2;
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+}
+.ns-popover-tooltip-theme.ns-popover-right-placement .triangle:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: transparent;
+  position: absolute;
+}
+.ns-popover-tooltip-theme.ns-popover-right-placement .triangle:after {
+  border-right-color: #fff;
+  border-left-width: 0;
+  left: 1px;
+  bottom: -10px;
+}
+.ns-popover-tooltip-theme.ns-popover-left-placement .triangle {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 11px;
+  border-color: transparent;
+  position: absolute;
+  border-left-color: #d2d2d2;
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+}
+.ns-popover-tooltip-theme.ns-popover-left-placement .triangle:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: transparent;
+  position: absolute;
+}
+.ns-popover-tooltip-theme.ns-popover-left-placement .triangle:after {
+  border-left-color: #fff;
+  border-right-width: 0;
+  right: 1px;
+  bottom: -10px;
+}
+.ns-popover-tooltip-theme.ns-popover-left-align .ns-popover-tooltip {
+  margin-left: 0;
+}
+.ns-popover-tooltip-theme.ns-popover-right-align .ns-popover-tooltip {
+  margin-right: 0;
+}
+.ns-popover-tooltip-theme.ns-popover-top-align .ns-popover-tooltip {
+  margin-top: 0;
+}
+.ns-popover-tooltip-theme.ns-popover-bottom-align .ns-popover-tooltip {
+  margin-bottom: 0;
+}
+</style><style type="text/css">tags-input{display:block}tags-input *,tags-input :after,tags-input :before{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}tags-input .host{position:relative;margin-top:5px;margin-bottom:5px;height:100%}tags-input .host:active{outline:0}tags-input .tags{-moz-appearance:textfield;-webkit-appearance:textfield;padding:1px;overflow:hidden;word-wrap:break-word;cursor:text;background-color:#fff;border:1px solid #a9a9a9;box-shadow:1px 1px 1px 0 #d3d3d3 inset;height:100%}tags-input .tags.focused{outline:0;-webkit-box-shadow:0 0 3px 1px rgba(5,139,242,.6);-moz-box-shadow:0 0 3px 1px rgba(5,139,242,.6);box-shadow:0 0 3px 1px rgba(5,139,242,.6)}tags-input .tags .tag-list{margin:0;padding:0;list-style-type:none}tags-input .tags .tag-item{margin:2px;padding:0 5px;display:inline-block;float:left;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif;height:26px;line-height:25px;border:1px solid #acacac;border-radius:3px;background:-webkit-linear-gradient(top,#f0f9ff 0,#cbebff 47%,#a1dbff 100%);background:linear-gradient(to bottom,#f0f9ff 0,#cbebff 47%,#a1dbff 100%)}tags-input .tags .tag-item.selected{background:-webkit-linear-gradient(top,#febbbb 0,#fe9090 45%,#ff5c5c 100%);background:linear-gradient(to bottom,#febbbb 0,#fe9090 45%,#ff5c5c 100%)}tags-input .tags .tag-item .remove-button{margin:0 0 0 5px;padding:0;border:none;background:0 0;cursor:pointer;vertical-align:middle;font:700 16px Arial,sans-serif;color:#585858}tags-input .tags .tag-item .remove-button:active{color:red}tags-input .tags .input{border:0;outline:0;margin:2px;padding:0;padding-left:5px;float:left;height:26px;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif}tags-input .tags .input.invalid-tag{color:red}tags-input .tags .input::-ms-clear{display:none}tags-input.ng-invalid .tags{-webkit-box-shadow:0 0 3px 1px rgba(255,0,0,.6);-moz-box-shadow:0 0 3px 1px rgba(255,0,0,.6);box-shadow:0 0 3px 1px rgba(255,0,0,.6)}tags-input .autocomplete{margin-top:5px;position:absolute;padding:5px 0;z-index:999;width:100%;background-color:#fff;border:1px solid rgba(0,0,0,.2);-webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,.2);box-shadow:0 5px 10px rgba(0,0,0,.2)}tags-input .autocomplete .suggestion-list{margin:0;padding:0;list-style-type:none}tags-input .autocomplete .suggestion-item{padding:5px 10px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:16px "Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;background-color:#fff}tags-input .autocomplete .suggestion-item.selected,tags-input .autocomplete .suggestion-item.selected em{color:#fff;background-color:#0097cf}tags-input .autocomplete .suggestion-item em{font:normal bold 16px "Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;background-color:#fff}</style><style type="text/css">/* Magnific Popup CSS */
+.mfp-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1042;
+  overflow: hidden;
+  position: fixed;
+  background: #0b0b0b;
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
+
+.mfp-wrap {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1043;
+  position: fixed;
+  outline: none !important;
+  -webkit-backface-visibility: hidden; }
+
+.mfp-container {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 0 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.mfp-container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle; }
+
+.mfp-align-top .mfp-container:before {
+  display: none; }
+
+.mfp-content {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  text-align: left;
+  z-index: 1045; }
+
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
+  width: 100%;
+  cursor: auto; }
+
+.mfp-ajax-cur {
+  cursor: progress; }
+
+.mfp-zoom-out-cur, .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
+  cursor: -moz-zoom-out;
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out; }
+
+.mfp-zoom {
+  cursor: pointer;
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in; }
+
+.mfp-auto-cursor .mfp-content {
+  cursor: auto; }
+
+.mfp-close,
+.mfp-arrow,
+.mfp-preloader,
+.mfp-counter {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; }
+
+.mfp-loading.mfp-figure {
+  display: none; }
+
+.mfp-hide {
+  display: none !important; }
+
+.mfp-preloader {
+  color: #CCC;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  text-align: center;
+  margin-top: -0.8em;
+  left: 8px;
+  right: 8px;
+  z-index: 1044; }
+  .mfp-preloader a {
+    color: #CCC; }
+    .mfp-preloader a:hover {
+      color: #FFF; }
+
+.mfp-s-ready .mfp-preloader {
+  display: none; }
+
+.mfp-s-error .mfp-content {
+  display: none; }
+
+button.mfp-close,
+button.mfp-arrow {
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  display: block;
+  outline: none;
+  padding: 0;
+  z-index: 1046;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+.mfp-close {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  padding: 0 0 18px 10px;
+  color: #FFF;
+  font-style: normal;
+  font-size: 28px;
+  font-family: Arial, Baskerville, monospace; }
+  .mfp-close:hover,
+  .mfp-close:focus {
+    opacity: 1;
+    filter: alpha(opacity=100); }
+  .mfp-close:active {
+    top: 1px; }
+
+.mfp-close-btn-in .mfp-close {
+  color: #333; }
+
+.mfp-image-holder .mfp-close,
+.mfp-iframe-holder .mfp-close {
+  color: #FFF;
+  right: -6px;
+  text-align: right;
+  padding-right: 6px;
+  width: 100%; }
+
+.mfp-counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #CCC;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap; }
+
+.mfp-arrow {
+  position: absolute;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  margin: 0;
+  top: 50%;
+  margin-top: -55px;
+  padding: 0;
+  width: 90px;
+  height: 110px;
+  -webkit-tap-highlight-color: transparent; }
+  .mfp-arrow:active {
+    margin-top: -54px; }
+  .mfp-arrow:hover,
+  .mfp-arrow:focus {
+    opacity: 1;
+    filter: alpha(opacity=100); }
+  .mfp-arrow:before,
+  .mfp-arrow:after,
+  .mfp-arrow .mfp-b,
+  .mfp-arrow .mfp-a {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 35px;
+    margin-left: 35px;
+    border: medium inset transparent; }
+  .mfp-arrow:after,
+  .mfp-arrow .mfp-a {
+    border-top-width: 13px;
+    border-bottom-width: 13px;
+    top: 8px; }
+  .mfp-arrow:before,
+  .mfp-arrow .mfp-b {
+    border-top-width: 21px;
+    border-bottom-width: 21px;
+    opacity: 0.7; }
+
+.mfp-arrow-left {
+  left: 0; }
+  .mfp-arrow-left:after,
+  .mfp-arrow-left .mfp-a {
+    border-right: 17px solid #FFF;
+    margin-left: 31px; }
+  .mfp-arrow-left:before,
+  .mfp-arrow-left .mfp-b {
+    margin-left: 25px;
+    border-right: 27px solid #3F3F3F; }
+
+.mfp-arrow-right {
+  right: 0; }
+  .mfp-arrow-right:after,
+  .mfp-arrow-right .mfp-a {
+    border-left: 17px solid #FFF;
+    margin-left: 39px; }
+  .mfp-arrow-right:before,
+  .mfp-arrow-right .mfp-b {
+    border-left: 27px solid #3F3F3F; }
+
+.mfp-iframe-holder {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+  .mfp-iframe-holder .mfp-content {
+    line-height: 0;
+    width: 100%;
+    max-width: 900px; }
+  .mfp-iframe-holder .mfp-close {
+    top: -40px; }
+
+.mfp-iframe-scaler {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-top: 56.25%; }
+  .mfp-iframe-scaler iframe {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    background: #000; }
+
+/* Main image in popup */
+img.mfp-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  line-height: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 0 40px;
+  margin: 0 auto; }
+
+/* The shadow behind the image */
+.mfp-figure {
+  line-height: 0; }
+  .mfp-figure:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40px;
+    bottom: 40px;
+    display: block;
+    right: 0;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    background: #444; }
+  .mfp-figure small {
+    color: #BDBDBD;
+    display: block;
+    font-size: 12px;
+    line-height: 14px; }
+  .mfp-figure figure {
+    margin: 0; }
+
+.mfp-bottom-bar {
+  margin-top: -36px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  cursor: auto; }
+
+.mfp-title {
+  text-align: left;
+  line-height: 18px;
+  color: #F3F3F3;
+  word-wrap: break-word;
+  padding-right: 36px; }
+
+.mfp-image-holder .mfp-content {
+  max-width: 100%; }
+
+.mfp-gallery .mfp-image-holder .mfp-figure {
+  cursor: pointer; }
+
+@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
+  /**
+       * Remove all paddings around the image on small screen
+       */
+  .mfp-img-mobile .mfp-image-holder {
+    padding-left: 0;
+    padding-right: 0; }
+  .mfp-img-mobile img.mfp-img {
+    padding: 0; }
+  .mfp-img-mobile .mfp-figure:after {
+    top: 0;
+    bottom: 0; }
+  .mfp-img-mobile .mfp-figure small {
+    display: inline;
+    margin-left: 5px; }
+  .mfp-img-mobile .mfp-bottom-bar {
+    background: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    margin: 0;
+    top: auto;
+    padding: 3px 5px;
+    position: fixed;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .mfp-img-mobile .mfp-bottom-bar:empty {
+      padding: 0; }
+  .mfp-img-mobile .mfp-counter {
+    right: 5px;
+    top: 3px; }
+  .mfp-img-mobile .mfp-close {
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    text-align: center;
+    padding: 0; } }
+
+@media all and (max-width: 900px) {
+  .mfp-arrow {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  .mfp-arrow-left {
+    -webkit-transform-origin: 0;
+    transform-origin: 0; }
+  .mfp-arrow-right {
+    -webkit-transform-origin: 100%;
+    transform-origin: 100%; }
+  .mfp-container {
+    padding-left: 6px;
+    padding-right: 6px; } }
+
+.mfp-ie7 .mfp-img {
+  padding: 0; }
+
+.mfp-ie7 .mfp-bottom-bar {
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: 5px;
+  padding-bottom: 5px; }
+
+.mfp-ie7 .mfp-container {
+  padding: 0; }
+
+.mfp-ie7 .mfp-content {
+  padding-top: 44px; }
+
+.mfp-ie7 .mfp-close {
+  top: 0;
+  right: 0;
+  padding-top: 0; }
+</style><style type="text/css">/*
+ * Toastr
+ * Version 2.0.2
+ * Copyright 2012-2014 John Papa and Hans Fjällemark.
+ * All Rights Reserved.
+ * Use, reproduction, distribution, and modification of this code is subject to the terms and
+ * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
+ *
+ * Author: John Papa and Hans Fjällemark
+ * Project: https://github.com/CodeSeven/toastr
+ */
+.toast-title {
+  font-weight: bold;
+}
+.toast-message {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.toast-message a,
+.toast-message label {
+  color: #ffffff;
+}
+.toast-message a:hover {
+  color: #cccccc;
+  text-decoration: none;
+}
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  -webkit-text-shadow: 0 1px 0 #ffffff;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
+}
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  filter: alpha(opacity=40);
+}
+/*Additional properties for button version
+ iOS requires the button element instead of an anchor tag.
+ If you want the anchor version, it requires `href="#"`.*/
+button.toast-close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+.toast-top-full-width {
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-bottom-full-width {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-top-left {
+  top: 12px;
+  left: 12px;
+}
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+.toast-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+#toast-container {
+  position: fixed;
+  z-index: 999999;
+  /*overrides*/
+
+}
+#toast-container * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#toast-container > div {
+  margin: 0 0 6px;
+  padding: 15px 15px 15px 50px;
+  width: 300px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  -moz-box-shadow: 0 0 12px #999999;
+  -webkit-box-shadow: 0 0 12px #999999;
+  box-shadow: 0 0 12px #999999;
+  color: #ffffff;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
+}
+#toast-container > :hover {
+  -moz-box-shadow: 0 0 12px #000000;
+  -webkit-box-shadow: 0 0 12px #000000;
+  box-shadow: 0 0 12px #000000;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+  cursor: pointer;
+}
+#toast-container > .toast-info {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
+}
+#toast-container > .toast-error {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=") !important;
+}
+#toast-container > .toast-success {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important;
+}
+#toast-container > .toast-warning {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=") !important;
+}
+#toast-container.toast-top-full-width > div,
+#toast-container.toast-bottom-full-width > div {
+  width: 96%;
+  margin: auto;
+}
+.toast {
+  background-color: #030303;
+}
+.toast-success {
+  background-color: #51a351;
+}
+.toast-error {
+  background-color: #bd362f;
+}
+.toast-info {
+  background-color: #2f96b4;
+}
+.toast-warning {
+  background-color: #f89406;
+}
+/*Responsive Design*/
+@media all and (max-width: 240px) {
+  #toast-container > div {
+    padding: 8px 8px 8px 50px;
+    width: 11em;
+  }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em;
+  }
+}
+@media all and (min-width: 241px) and (max-width: 480px) {
+  #toast-container > div {
+    padding: 8px 8px 8px 50px;
+    width: 18em;
+  }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em;
+  }
+}
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #toast-container > div {
+    padding: 15px 15px 15px 50px;
+    width: 25em;
+  }
+}
+</style><style type="text/css">.atwho-view {
+    position:absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    margin-top: 18px;
+    background: white;
+    color: black;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    min-width: 120px;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 11110 !important;
+}
+
+.atwho-view .cur {
+    background: #3366FF;
+    color: white;
+}
+.atwho-view .cur small {
+    color: white;
+}
+.atwho-view strong {
+    color: #3366FF;
+}
+.atwho-view .cur strong {
+    color: white;
+    font:bold;
+}
+.atwho-view ul {
+    /* width: 100px; */
+    list-style:none;
+    padding:0;
+    margin:auto;
+}
+.atwho-view ul li {
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 1px solid #DDD;
+    cursor: pointer;
+    /* border-top: 1px solid #C8C8C8; */
+}
+.atwho-view small {
+    font-size: smaller;
+    color: #777;
+    font-weight: normal;
+}
+</style></head><body ng-class="{'hub-full': state.current().opts.full, 'no-sidebar': !state.current().opts.sidebar, 'hub-is-home': state.current().name == 'home' &amp;&amp; 'docs' == 'landing', 'hub-suggested-edits': suggestedEdits.isEnabled}" class="body-overlap theme-line header-solid header-bg-size-auto header-bg-pos-tl header-overlay-triangles lumosity-normal "><div id="hub-me" style="display: none;">{"loggedIn":false,"search":{"token":"M2EyNGYzNTI3OGFmZTA5NTgxNDcwZjI3NTYxODg5YjFlOWFlNGE3YzFhYjg2NDYyMTQ2YWI2NTBkNjFjNDdkMnRhZ0ZpbHRlcnM9cHJvamVjdDo1NGQ4MjI0ZDI1ZTkwYTBkMDBkYjU0ZmYsKGhpZGRlbjpub25lLGhpZGRlbjpmYWxzZSksKHZlcnNpb246bm9uZSx2ZXJzaW9uOjU5NWZkYWZiYWE1NWI3MDAxYjcxM2E4OCk=","filters":"tagFilters=project:54d8224d25e90a0d00db54ff,(hidden:none,hidden:false),(version:none,version:595fdafbaa55b7001b713a88)","app":"T28YKFATPY","modules":{"landing":false,"docs":true,"examples":true,"reference":false,"blog":false,"discuss":false,"suggested_edits":true}}}</div><header id="hub-header"><div id="header-top"><div class="hub-container"><div class="clearfix"><a href="https://ignite.apache.org/" class="header-link"><h1 id="header-logo">Apache Ignite</h1></a><nav><ul id="header-nav-left"><li><a href="https://apacheignite.readme.io/docs/" target="_self">Java*</a></li><li><a href="https://apacheignite-net.readme.io/docs/" target="_self">C#/.NET</a></li><li><a href="https://apacheignite-cpp.readme.io/" target="_self">C++</a></li><li><a href="https://apacheignite-mix.readme.io/docs" target="_self">Integrations</a></li><li><a href="https://apacheignite-fs.readme.io/docs" target="_self">Hadoop/Spark</a></li><li><a href="https://apacheignite-tools.readme.io/docs" target="_self">Tools</a></li><li><a href="https://ignite.apache.org/community/resources.html#ask" target="_self">Ask a Question</a></li><li><a href="https://ignite.apache.org/download.cgi" target="_self">Download</a></li></ul><ul id="header-nav-right"><li><span login="" class=""><span ng-show="user.loggedIn" class="login hub-subheader-breadcrumbs ng-hide"><span class="dropdown right-dropdown"><script type="text/ng-template" id="loginPopover"><div id="hub-user-dropdown" class="ns-popover-tooltip"><div class="ns-triangle"></div><div class="triangle"></div><ul><li ng-show="user.isAdmin"><a href="https://dash.readme.io/project/apacheignite/v2.1/dashboard"> <i class="fa fa-lock"></i>Admin Panel</a></li><li><a ng-href="/logout?redirect_uri={{redirect()}}" target="_self"> <i class="fa fa-power-off"></i>Log out</a></li></ul></div></script><a ns-popover="" ns-popover-trigger="click" ns-popover-theme="ns-popover-dropdown-theme" ns-popover-placement="bottom|right" ns-popover-template="loginPopover" ns-popover-timeout="-1" class="hub-breadcrumb-item dropdown-toggle ng-scope ng-binding"><i class="fa fa-chevron-down"></i></a></span></span><span ng-show="!user.loggedIn" class="login"><a ng-href="/login?redirect=docs/jdbc-driver" target="_self" href="https://apacheignite.readme.io/login?redirect=docs/jdbc-driver">Log In</a></span></span></li><li><a href="https://ignite.apache.org/releases/2.1.0/javadoc/index.html" target="_self">Javadoc</a></li><li><a href="https://github.com/apache/ignite/tree/master/examples" target="_self">Examples</a></li></ul></nav></div><div id="hub-landing-top" class="hub-landing-html"><div id="jumbotron" class="promos">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <h2 style="color: #444444;">GridGain Developer Hub - Apache Ignite<sup>tm</sup></h2>
+      <p>
+      Welcome to the Apache Ignite developer hub run by GridGain. 
+      Here you'll find comprehensive guides and documentation to help you 
+      start working with Apache Ignite as quickly as possible, as well 
+      as support if you get stuck.
+    	</p>
+      <p>&nbsp;</p>
+      <p>
+			GridGain also provides Community Edition which is a distribution of Apache Ignite made 
+      available by GridGain. It is the fastest and easiest way to get 
+      started with Apache Ignite. The Community Edition is generally more 
+      stable than the Apache Ignite release available from the Apache Ignite
+      website and may contain extra bug fixes and features that have not made
+      it yet into the release on the Apache website.
+      </p>
+      <p>&nbsp;</p>
+      <p>
+      Let's jump right in!
+      </p>
+      <p>&nbsp;</p>
+    	<a href="https://apacheignite.readme.io/v1.0/docs" class="btn btn-lg btn-primary">Documentation</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    	<a href="https://apacheignite.readme.io/v1.0/discuss" class="btn btn-lg btn-primary">Ask a Question</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    	<a href="https://apacheignite.readme.io/v1.0/page/download" class="btn btn-lg btn-primary">Download</a>
+      <p>&nbsp;</p>
+     	<a href="https://ignite.incubator.apache.org/releases/1.0.0/javadoc" target="_new" class="btn btn-primary">Javadoc</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    	<a href="https://ignite.incubator.apache.org/releases/1.0.0/scaladoc/scalar" target="_new" class="btn btn-primary">Scaladoc</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    	<a href="https://github.com/apache/incubator-ignite/tree/master/examples" target="_new" class="btn btn-primary">Examples</a>
+    </div>
+	</div>
+</div></div></div></div><div id="hub-subheader-parent"><div id="hub-subheader"><div class="hub-container"><nav id="header-bottom-nav"><div id="header-icon-nav"><div class="icons"><div class="hub-subheader-breadcrumbs"><!-- Version picker--><span dropdown="" class="left-dropdown dropdown ng-isolate-scope"><a dropdown-toggle="" href="" class="hub-breadcrumb-item dropdown-toggle"><span>v2.1</span><i class="fa fa-chevron-down"></i></a></span><span dropdown="" class="left-dropdown dropdown ng-isolate-scope"><a href="" ng-class="{'hub-breadcrumb-last': !showTitle() &amp;&amp; !state.current().params.category}" dropdown-toggle="" class="hub-breadcrumb-item hub-breadcrumb-item-type dropdown-toggle"><span ng-show="state.current().root == 'home'" class="ng-hide">Home</span><span ng-show="state.current().root == 'docs'">Home</span><span ng-show="state.current().root == 'reference'" class="ng-hide">Reference</span><span ng-show="state.current().root == 'preview'" class="ng-hide">Reference</span><span ng-show="state.current().root == 'blog'" class="ng-hide">Announcements</span><span ng-show="state.current().root == 'discuss'" class="ng-hide">Ask a Question</span><span ng-show="state.current().root == 'error'" class="ng-hide">Page Not Found</span><span ng-show="state.current().root == 'search'" class="ng-hide">Search</span><span ng-show="state.current().root == 'custompages'" style="text-transform: capitalize;" class="ng-binding ng-hide"></span><i class="fa fa-chevron-down"></i></a></span><span ng-show="showTitle()" class="hub-breadcrumb-item hub-breadcrumb-item-title"><span class="ng-binding">JDBC Driver</span></span></div><div><div id="hub-search"><div searchbox="" ng-class="{full:search.full}" class="searchbox ng-scope"><input ng-model="search.query" placeholder="Search" class="search-box ng-pristine ng-untouched ng-valid" type="text"><div class="fa fa-search"></div></div></div></div></div></div></nav><div id="header-bottom-suggested-edits"><div class="pull-right"><a href="" ng-click="suggestedEdits.disable()" class="hub-suggested-edits-cancel"><i class="icon icon-cross-circle"></i>discard</a><!-- ngIf: user.isAdmin --><button ng-click="suggestedEdits.prepare()" class="btn btn-default"><i class="icon icon-right icon-register"></i><strong>Submit</strong> Suggested Edits</button></div></div></div><div><div id="hub-search-results" searchresults="" ng-class="{'hub-search-results-active':search.full}" class="ng-scope"><div class="hub-container"><h3>Search results for "<em class="ng-binding"></em>"</h3><div ng-show="!search.results.length" class="hub-search-noresults"><em class="ng-binding">No results found for "".&nbsp;</em></div></div><ul ng-show="search.results.length" class="ng-hide"><!-- ngRepeat: result in search.results --></ul><a ng-show="search.results.length" ng-href="/v2.1/search?q=" class="viewAll ng-hide" href="https://apacheignite.readme.io/v2.1/search?q=">View All Results</a></div></div><!-- ngIf: isMobile --></div></div></header><div ng-class="{active:contentLoadingSection || contentLoading}" class="hub-loading-indicator"></div><div id="hub-container" ng-class="{loading:contentLoadingSection}"><div class="hub-container"><div id="hub-sidebar-parent" sidebar="" class="hub-sidebar-sticky" style=""><nav id="hub-sidebar"><div class="scrollable-parent"><div class="nano ng-isolate-scope has-scrollbar" scroll-to-top="state.current().root"><div class="nano-content" ng-transclude="" tabindex="0" style="right: -13px;"><div id="hub-sidebar-content" class="ng-scope"><div ng-show="state.current().root == 'docs'"><h3>Basic Concepts</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1d')}">             <a ui-sref="docs.show({'doc': 'what-is-ignite'})" href="https://apacheignite.readme.io/docs/what-is-ignite" ui-sref-alt="docs" class="text-overflow"><span ng-show="suggestedEdits.edited['what-is-ignite'].edited" class="icon icon-pencil4 ng-hide"></span>What is Ignite</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1e')}">             <a ui-sref="docs.show({'doc': 'getting-started'})" href="https://apacheignite.readme.io/docs/getting-started" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['getting-started'].edited" class="icon icon-pencil4 ng-hide"></span>Getting Started</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1f')}">             <a ui-sref="docs.show({'doc': 'maven-setup'})" href="https://apacheignite.readme.io/docs/maven-setup" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['maven-setup'].edited" class="icon icon-pencil4 ng-hide"></span>Maven Setup</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a20')}">             <a ui-sref="docs.show({'doc': 'ignite-life-cycle'})" href="https://apacheignite.readme.io/docs/ignite-life-cycle" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['ignite-life-cycle'].edited" class="icon icon-pencil4 ng-hide"></span>Ignite Life Cycle</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a22')}">             <a ui-sref="docs.show({'doc': 'clients-vs-servers'})" href="https://apacheignite.readme.io/docs/clients-vs-servers" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['clients-vs-servers'].edited" class="icon icon-pencil4 ng-hide"></span>Clients and Servers</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7c')}">             <a ui-sref="docs.show({'doc': 'thread-pools'})" href="https://apacheignite.readme.io/docs/thread-pools" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['thread-pools'].edited" class="icon icon-pencil4 ng-hide"></span>Thread Pools</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a21')}">             <a ui-sref="docs.show({'doc': 'async-support'})" href="https://apacheignite.readme.io/docs/async-support" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['async-support'].edited" class="icon icon-pencil4 ng-hide"></span>Asynchronous Support</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a60')}">             <a ui-sref="docs.show({'doc': 'binary-marshaller'})" href="https://apacheignite.readme.io/docs/binary-marshaller" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['binary-marshaller'].edited" class="icon icon-pencil4 ng-hide"></span>Binary Marshaller</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a72')}">             <a ui-sref="docs.show({'doc': 'resource-injection'})" href="https://apacheignite.readme.io/docs/resource-injection" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['resource-injection'].edited" class="icon icon-pencil4 ng-hide"></span>Resource Injection</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a23')}">             <a ui-sref="docs.show({'doc': 'faq'})" href="https://apacheignite.readme.io/docs/faq" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['faq'].edited" class="icon icon-pencil4 ng-hide"></span>FAQ</a><ul class="subpages"></ul></li></ul><h3>Production Readiness</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a14')}">             <a ui-sref="docs.show({'doc': 'preparing-for-production'})" href="https://apacheignite.readme.io/docs/preparing-for-production" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['preparing-for-production'].edited" class="icon icon-pencil4 ng-hide"></span>Preparing for Production</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a15')}">             <a ui-sref="docs.show({'doc': 'jvm-and-system-tuning'})" href="https://apacheignite.readme.io/docs/jvm-and-system-tuning" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['jvm-and-system-tuning'].edited" class="icon icon-pencil4 ng-hide"></span>JVM and System Tuning</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a16')}">             <a ui-sref="docs.show({'doc': 'performance-tips'})" href="https://apacheignite.readme.io/docs/performance-tips" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['performance-tips'].edited" class="icon icon-pencil4 ng-hide"></span>Performance Tips</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a17')}">             <a ui-sref="docs.show({'doc': 'capacity-planning'})" href="https://apacheignite.readme.io/docs/capacity-planning" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['capacity-planning'].edited" class="icon icon-pencil4 ng-hide"></span>Capacity Planning</a><ul class="subpages"></ul></li></ul><h3>Migration Guides</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7f')}">             <a ui-sref="docs.show({'doc': 'apache-ignite-20'})" href="https://apacheignite.readme.io/docs/apache-ignite-20" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['apache-ignite-20'].edited" class="icon icon-pencil4 ng-hide"></span>Apache Ignite 2.0</a><ul class="subpages"></ul></li></ul><h3>Platforms &amp; Protocols</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a3e')}">             <a ui-sref="docs.show({'doc': 'overview'})" href="https://apacheignite.readme.io/docs/overview" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['overview'].edited" class="icon icon-pencil4 ng-hide"></span>Overview</a><ul class="subpages"></ul></li><li><a href="https://apacheignite-net.readme.io/docs/" data-sidebar="ignitenet" target="_blank" class="sidebar-link"><span>Ignite.NET</span><div class="fa fa-external-link-square external"></div></a></li><li><a href="https://apacheignite-cpp.readme.io/" data-sidebar="ignitec" target="_blank" class="sidebar-link"><span>Ignite.C++</span><div class="fa fa-external-link-square external"></div></a></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a41')}">             <a ui-sref="docs.show({'doc': 'rest-api'})" href="https://apacheignite.readme.io/docs/rest-api" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['rest-api'].edited" class="icon icon-pencil4 ng-hide"></span>REST API</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a42')}">             <a ui-sref="docs.show({'doc': 'memcached-support'})" href="https://apacheignite.readme.io/docs/memcached-support" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['memcached-support'].edited" class="icon icon-pencil4 ng-hide"></span>Memcached</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a43')}">             <a ui-sref="docs.show({'doc': 'redis'})" href="https://apacheignite.readme.io/docs/redis" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['redis'].edited" class="icon icon-pencil4 ng-hide"></span>Redis</a><ul class="subpages"></ul></li><li><a href="https://apacheignite-mix.readme.io/docs/php-pdo" data-sidebar="php" target="_blank" class="sidebar-link"><span>PHP</span><div class="fa fa-external-link-square external"></div></a></li></ul><h3>Clustering</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a66')}">             <a ui-sref="docs.show({'doc': 'clustering'})" href="https://apacheignite.readme.io/docs/clustering" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['clustering'].edited" class="icon icon-pencil4 ng-hide"></span>Clustering</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a67')}">             <a ui-sref="docs.show({'doc': 'cluster'})" href="https://apacheignite.readme.io/docs/cluster" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cluster'].edited" class="icon icon-pencil4 ng-hide"></span>Cluster APIs</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a68')}">             <a ui-sref="docs.show({'doc': 'cluster-groups'})" href="https://apacheignite.readme.io/docs/cluster-groups" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cluster-groups'].edited" class="icon icon-pencil4 ng-hide"></span>Cluster Groups</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a69')}">             <a ui-sref="docs.show({'doc': 'leader-election'})" href="https://apacheignite.readme.io/docs/leader-election" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['leader-election'].edited" class="icon icon-pencil4 ng-hide"></span>Leader Election</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6a')}">             <a ui-sref="docs.show({'doc': 'cluster-config'})" href="https://apacheignite.readme.io/docs/cluster-config" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cluster-config'].edited" class="icon icon-pencil4 ng-hide"></span>Cluster Configuration</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6b')}">             <a ui-sref="docs.show({'doc': 'zero-deployment'})" href="https://apacheignite.readme.io/docs/zero-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['zero-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Zero Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6c')}">             <a ui-sref="docs.show({'doc': 'deployment-modes'})" href="https://apacheignite.readme.io/docs/deployment-modes" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['deployment-modes'].edited" class="icon icon-pencil4 ng-hide"></span>Deployment Modes</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6d')}">             <a ui-sref="docs.show({'doc': 'network-config'})" href="https://apacheignite.readme.io/docs/network-config" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['network-config'].edited" class="icon icon-pencil4 ng-hide"></span>Network Configuration</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a71')}">             <a ui-sref="docs.show({'doc': 'ssltls'})" href="https://apacheignite.readme.io/docs/ssltls" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['ssltls'].edited" class="icon icon-pencil4 ng-hide"></span>SSL\TLS</a><ul class="subpages"></ul></li></ul><h3>Deployment</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a79')}">             <a ui-sref="docs.show({'doc': 'deployment'})" href="https://apacheignite.readme.io/docs/deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6e')}">             <a ui-sref="docs.show({'doc': 'docker-deployment'})" href="https://apacheignite.readme.io/docs/docker-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['docker-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Docker Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a74')}">             <a ui-sref="docs.show({'doc': 'aws-deployment'})" href="https://apacheignite.readme.io/docs/aws-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['aws-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>AWS Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a75')}">             <a ui-sref="docs.show({'doc': 'google-compute-deployment'})" href="https://apacheignite.readme.io/docs/google-compute-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['google-compute-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Google Compute Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a6f')}">             <a ui-sref="docs.show({'doc': 'mesos-deployment'})" href="https://apacheignite.readme.io/docs/mesos-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['mesos-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Mesos Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a70')}">             <a ui-sref="docs.show({'doc': 'yarn-deployment'})" href="https://apacheignite.readme.io/docs/yarn-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['yarn-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>YARN Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a76')}">             <a ui-sref="docs.show({'doc': 'kubernetes-deployment'})" href="https://apacheignite.readme.io/docs/kubernetes-deployment" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['kubernetes-deployment'].edited" class="icon icon-pencil4 ng-hide"></span>Kubernetes Deployment</a><ul class="subpages"></ul></li></ul><h3>Durable Memory</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7d')}">             <a ui-sref="docs.show({'doc': 'durable-memory'})" href="https://apacheignite.readme.io/docs/durable-memory" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['durable-memory'].edited" class="icon icon-pencil4 ng-hide"></span>Durable Memory</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('5965601b02bd160015650be3')}">             <a ui-sref="docs.show({'doc': 'memory-architecture'})" href="https://apacheignite.readme.io/docs/memory-architecture" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['memory-architecture'].edited" class="icon icon-pencil4 ng-hide"></span>Memory Architecture</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('59655f2ff0fe66001a2370ac')}">             <a ui-sref="docs.show({'doc': 'memory-configuration'})" href="https://apacheignite.readme.io/docs/memory-configuration" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['memory-configuration'].edited" class="icon icon-pencil4 ng-hide"></span>Memory Configuration</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a54')}">             <a ui-sref="docs.show({'doc': 'evictions'})" href="https://apacheignite.readme.io/docs/evictions" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['evictions'].edited" class="icon icon-pencil4 ng-hide"></span>Eviction Policies</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('59640faf79a3ab00473586cf')}">             <a ui-sref="docs.show({'doc': 'memory-defragmentation'})" href="https://apacheignite.readme.io/docs/memory-defragmentation" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['memory-defragmentation'].edited" class="icon icon-pencil4 ng-hide"></span>Memory Defragmentation</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('59600c9a5a53ab0015cde08c')}">             <a ui-sref="docs.show({'doc': 'memory-metrics'})" href="https://apacheignite.readme.io/docs/memory-metrics" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['memory-metrics'].edited" class="icon icon-pencil4 ng-hide"></span>Memory Metrics</a><ul class="subpages"></ul></li></ul><h3>Persistence</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a80')}">             <a ui-sref="docs.show({'doc': 'distributed-persistent-store'})" href="https://apacheignite.readme.io/docs/distributed-persistent-store" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-persistent-store'].edited" class="icon icon-pencil4 ng-hide"></span>Ignite Persistence</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a52')}">             <a ui-sref="docs.show({'doc': '3rd-party-store'})" href="https://apacheignite.readme.io/docs/3rd-party-store" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['3rd-party-store'].edited" class="icon icon-pencil4 ng-hide"></span>3rd Party Persistence</a><ul class="subpages"></ul></li></ul><h3>Data Grid</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a48')}">             <a ui-sref="docs.show({'doc': 'data-grid'})" href="https://apacheignite.readme.io/docs/data-grid" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['data-grid'].edited" class="icon icon-pencil4 ng-hide"></span>Data Grid</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a49')}">             <a ui-sref="docs.show({'doc': 'jcache'})" href="https://apacheignite.readme.io/docs/jcache" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['jcache'].edited" class="icon icon-pencil4 ng-hide"></span>JCache and Beyond</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4a')}">             <a ui-sref="docs.show({'doc': 'cache-modes'})" href="https://apacheignite.readme.io/docs/cache-modes" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cache-modes'].edited" class="icon icon-pencil4 ng-hide"></span>Cache Modes</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4c')}">             <a ui-sref="docs.show({'doc': 'near-caches'})" href="https://apacheignite.readme.io/docs/near-caches" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['near-caches'].edited" class="icon icon-pencil4 ng-hide"></span>Near Caches</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4b')}">             <a ui-sref="docs.show({'doc': 'primary-and-backup-copies'})" href="https://apacheignite.readme.io/docs/primary-and-backup-copies" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['primary-and-backup-copies'].edited" class="icon icon-pencil4 ng-hide"></span>Primary &amp; Backup Copies</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a51')}">             <a ui-sref="docs.show({'doc': 'affinity-collocation'})" href="https://apacheignite.readme.io/docs/affinity-collocation" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['affinity-collocation'].edited" class="icon icon-pencil4 ng-hide"></span>Affinity Collocation</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7e')}">             <a ui-sref="docs.show({'doc': 'cache-metrics'})" href="https://apacheignite.readme.io/docs/cache-metrics" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cache-metrics'].edited" class="icon icon-pencil4 ng-hide"></span>Cache Metrics</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a55')}">             <a ui-sref="docs.show({'doc': 'expiry-policies'})" href="https://apacheignite.readme.io/docs/expiry-policies" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['expiry-policies'].edited" class="icon icon-pencil4 ng-hide"></span>Expiry Policies</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4f')}">             <a ui-sref="docs.show({'doc': 'transactions'})" href="https://apacheignite.readme.io/docs/transactions" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['transactions'].edited" class="icon icon-pencil4 ng-hide"></span>Transactions</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a50')}">             <a ui-sref="docs.show({'doc': 'distributed-locks'})" href="https://apacheignite.readme.io/docs/distributed-locks" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-locks'].edited" class="icon icon-pencil4 ng-hide"></span>Locks</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4d')}">             <a ui-sref="docs.show({'doc': 'cache-queries'})" href="https://apacheignite.readme.io/docs/cache-queries" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cache-queries'].edited" class="icon icon-pencil4 ng-hide"></span>Cache Queries</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a4e')}">             <a ui-sref="docs.show({'doc': 'continuous-queries'})" href="https://apacheignite.readme.io/docs/continuous-queries" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['continuous-queries'].edited" class="icon icon-pencil4 ng-hide"></span>Continuous Queries</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a56')}">             <a ui-sref="docs.show({'doc': 'rebalancing'})" href="https://apacheignite.readme.io/docs/rebalancing" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['rebalancing'].edited" class="icon icon-pencil4 ng-hide"></span>Data Rebalancing</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a57')}">             <a ui-sref="docs.show({'doc': 'topology-validation'})" href="https://apacheignite.readme.io/docs/topology-validation" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['topology-validation'].edited" class="icon icon-pencil4 ng-hide"></span>Topology Validation</a><ul class="subpages"></ul></li><li><a href="https://apacheignite-mix.readme.io/docs/web-session-clustering" data-sidebar="web-session-clustering" target="_blank" class="sidebar-link"><span>Web Session Clustering</span><div class="fa fa-external-link-square external"></div></a></li><li><a href="https://apacheignite-mix.readme.io/docs/hibernate-l2-cache" data-sidebar="hibernate-l2-cache" target="_blank" class="sidebar-link"><span>Hibernate L2 Cache</span><div class="fa fa-external-link-square external"></div></a></li></ul><h3>Distributed SQL</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a24')}">             <a ui-sref="docs.show({'doc': 'distributed-sql'})" href="https://apacheignite.readme.io/docs/distributed-sql" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-sql'].edited" class="icon icon-pencil4 ng-hide"></span>Distributed SQL</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a25')}">             <a ui-sref="docs.show({'doc': 'sql-queries'})" href="https://apacheignite.readme.io/docs/sql-queries" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['sql-queries'].edited" class="icon icon-pencil4 ng-hide"></span>Distributed Queries</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a26')}">             <a ui-sref="docs.show({'doc': 'local-queries'})" href="https://apacheignite.readme.io/docs/local-queries" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['local-queries'].edited" class="icon icon-pencil4 ng-hide"></span>Local Queries</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a28')}">             <a ui-sref="docs.show({'doc': 'indexes'})" href="https://apacheignite.readme.io/docs/indexes" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['indexes'].edited" class="icon icon-pencil4 ng-hide"></span>Schema and Indexes</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a27')}">             <a ui-sref="docs.show({'doc': 'dml'})" href="https://apacheignite.readme.io/docs/dml" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['dml'].edited" class="icon icon-pencil4 ng-hide"></span>Distributed DML</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7b')}">             <a ui-sref="docs.show({'doc': 'distributed-ddl'})" href="https://apacheignite.readme.io/docs/distributed-ddl" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-ddl'].edited" class="icon icon-pencil4 ng-hide"></span>Distributed DDL</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a29')}">             <a ui-sref="docs.show({'doc': 'miscellaneous-features'})" href="https://apacheignite.readme.io/docs/miscellaneous-features" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['miscellaneous-features'].edited" class="icon icon-pencil4 ng-hide"></span>Miscellaneous Features</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a2a')}">             <a ui-sref="docs.show({'doc': 'configuration-parameters'})" href="https://apacheignite.readme.io/docs/configuration-parameters" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['configuration-parameters'].edited" class="icon icon-pencil4 ng-hide"></span>Configuration Parameters</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a2b')}" class="subnav-expanded">             <a ui-sref="docs.show({'doc': 'jdbc-driver'})" href="https://apacheignite.readme.io/docs/jdbc-driver" ui-sref-alt="" class="text-overflow active"><span ng-show="suggestedEdits.edited['jdbc-driver'].edited" class="icon icon-pencil4 ng-hide"></span>JDBC Driver</a><ul class="subpages"></ul></li><li><a href="https://apacheignite.readme.io/docs/odbc-driver" data-sidebar="odbc-driver-1" target="_self" class="sidebar-link"><span>ODBC Driver</span><div class="fa fa-external-link-square external"></div></a></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a2d')}">             <a ui-sref="docs.show({'doc': 'geospatial-queries'})" href="https://apacheignite.readme.io/docs/geospatial-queries" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['geospatial-queries'].edited" class="icon icon-pencil4 ng-hide"></span>Geospatial Support</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a2e')}">             <a ui-sref="docs.show({'doc': 'sql-performance-and-debugging'})" href="https://apacheignite.readme.io/docs/sql-performance-and-debugging" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['sql-performance-and-debugging'].edited" class="icon icon-pencil4 ng-hide"></span>Performance and Debugging</a><ul class="subpages"></ul></li></ul><h3>ODBC Driver</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a19')}">             <a ui-sref="docs.show({'doc': 'odbc-driver'})" href="https://apacheignite.readme.io/docs/odbc-driver" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['odbc-driver'].edited" class="icon icon-pencil4 ng-hide"></span>ODBC Driver</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1a')}">             <a ui-sref="docs.show({'doc': 'connecting-string'})" href="https://apacheignite.readme.io/docs/connecting-string" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['connecting-string'].edited" class="icon icon-pencil4 ng-hide"></span>Connection String and DSN</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1b')}">             <a ui-sref="docs.show({'doc': 'quering-data'})" href="https://apacheignite.readme.io/docs/quering-data" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['quering-data'].edited" class="icon icon-pencil4 ng-hide"></span>Querying and Modifying Data</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a1c')}">             <a ui-sref="docs.show({'doc': 'conformance'})" href="https://apacheignite.readme.io/docs/conformance" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['conformance'].edited" class="icon icon-pencil4 ng-hide"></span>Conformance</a><ul class="subpages"></ul></li></ul><h3>Data Ingestion &amp; Streaming</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a61')}">             <a ui-sref="docs.show({'doc': 'streaming--cep'})" href="https://apacheignite.readme.io/docs/streaming--cep" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['streaming--cep'].edited" class="icon icon-pencil4 ng-hide"></span>Data Ingestion &amp; Streaming</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a53')}">             <a ui-sref="docs.show({'doc': 'data-loading'})" href="https://apacheignite.readme.io/docs/data-loading" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['data-loading'].edited" class="icon icon-pencil4 ng-hide"></span>Data Loading</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a62')}">             <a ui-sref="docs.show({'doc': 'data-streamers'})" href="https://apacheignite.readme.io/docs/data-streamers" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['data-streamers'].edited" class="icon icon-pencil4 ng-hide"></span>Data Streamers</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a65')}">             <a ui-sref="docs.show({'doc': 'integrations'})" href="https://apacheignite.readme.io/docs/integrations" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['integrations'].edited" class="icon icon-pencil4 ng-hide"></span>Integrations</a><ul class="subpages"></ul></li></ul><h3>Compute Grid</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a30')}">             <a ui-sref="docs.show({'doc': 'compute-grid'})" href="https://apacheignite.readme.io/docs/compute-grid" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['compute-grid'].edited" class="icon icon-pencil4 ng-hide"></span>Compute Grid</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a31')}">             <a ui-sref="docs.show({'doc': 'distributed-closures'})" href="https://apacheignite.readme.io/docs/distributed-closures" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-closures'].edited" class="icon icon-pencil4 ng-hide"></span>Distributed Closures</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a32')}">             <a ui-sref="docs.show({'doc': 'executor-service'})" href="https://apacheignite.readme.io/docs/executor-service" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['executor-service'].edited" class="icon icon-pencil4 ng-hide"></span>Executor Service</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a33')}">             <a ui-sref="docs.show({'doc': 'compute-tasks'})" href="https://apacheignite.readme.io/docs/compute-tasks" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['compute-tasks'].edited" class="icon icon-pencil4 ng-hide"></span>MapReduce &amp; ForkJoin</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a34')}">             <a ui-sref="docs.show({'doc': 'continuous-mapping'})" href="https://apacheignite.readme.io/docs/continuous-mapping" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['continuous-mapping'].edited" class="icon icon-pencil4 ng-hide"></span>Continuous Mapping</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a35')}">             <a ui-sref="docs.show({'doc': 'node-local-map'})" href="https://apacheignite.readme.io/docs/node-local-map" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['node-local-map'].edited" class="icon icon-pencil4 ng-hide"></span>Per-Node Shared State</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a36')}">             <a ui-sref="docs.show({'doc': 'collocate-compute-and-data'})" href="https://apacheignite.readme.io/docs/collocate-compute-and-data" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['collocate-compute-and-data'].edited" class="icon icon-pencil4 ng-hide"></span>Collocate Compute and Data</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a37')}">             <a ui-sref="docs.show({'doc': 'fault-tolerance'})" href="https://apacheignite.readme.io/docs/fault-tolerance" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['fault-tolerance'].edited" class="icon icon-pencil4 ng-hide"></span>Fault Tolerance</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a38')}">             <a ui-sref="docs.show({'doc': 'load-balancing'})" href="https://apacheignite.readme.io/docs/load-balancing" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['load-balancing'].edited" class="icon icon-pencil4 ng-hide"></span>Load Balancing</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a39')}">             <a ui-sref="docs.show({'doc': 'checkpointing'})" href="https://apacheignite.readme.io/docs/checkpointing" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['checkpointing'].edited" class="icon icon-pencil4 ng-hide"></span>Checkpointing</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a3a')}">             <a ui-sref="docs.show({'doc': 'job-scheduling'})" href="https://apacheignite.readme.io/docs/job-scheduling" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['job-scheduling'].edited" class="icon icon-pencil4 ng-hide"></span>Job Scheduling</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a3b')}">             <a ui-sref="docs.show({'doc': 'deployment-spi'})" href="https://apacheignite.readme.io/docs/deployment-spi" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['deployment-spi'].edited" class="icon icon-pencil4 ng-hide"></span>Task Deployment</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a3c')}">             <a ui-sref="docs.show({'doc': 'cron-based-scheduling'})" href="https://apacheignite.readme.io/docs/cron-based-scheduling" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cron-based-scheduling'].edited" class="icon icon-pencil4 ng-hide"></span>Cron-Based Scheduling</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a3d')}">             <a ui-sref="docs.show({'doc': 'aop-based-grid-enabling'})" href="https://apacheignite.readme.io/docs/aop-based-grid-enabling" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['aop-based-grid-enabling'].edited" class="icon icon-pencil4 ng-hide"></span>AOP-Based Grid Enabling</a><ul class="subpages"></ul></li></ul><h3>Machine Learning Grid</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a7a')}">             <a ui-sref="docs.show({'doc': 'machine-learning'})" href="https://apacheignite.readme.io/docs/machine-learning" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['machine-learning'].edited" class="icon icon-pencil4 ng-hide"></span>Machine Learning</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a86')}">             <a ui-sref="docs.show({'doc': 'k-means-clustering'})" href="https://apacheignite.readme.io/docs/k-means-clustering" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['k-means-clustering'].edited" class="icon icon-pencil4 ng-hide"></span>K-Means Clustering</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a87')}">             <a ui-sref="docs.show({'doc': 'ols-multiple-linear-regression'})" href="https://apacheignite.readme.io/docs/ols-multiple-linear-regression" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['ols-multiple-linear-regression'].edited" class="icon icon-pencil4 ng-hide"></span>OLS Multiple Linear Regression</a><ul class="subpages"></ul></li></ul><h3>Service Grid</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a44')}">             <a ui-sref="docs.show({'doc': 'service-grid'})" href="https://apacheignite.readme.io/docs/service-grid" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['service-grid'].edited" class="icon icon-pencil4 ng-hide"></span>Service Grid</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a45')}">             <a ui-sref="docs.show({'doc': 'service-example'})" href="https://apacheignite.readme.io/docs/service-example" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['service-example'].edited" class="icon icon-pencil4 ng-hide"></span>Service Example</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a46')}">             <a ui-sref="docs.show({'doc': 'cluster-singletons'})" href="https://apacheignite.readme.io/docs/cluster-singletons" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['cluster-singletons'].edited" class="icon icon-pencil4 ng-hide"></span>Cluster Singletons</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a47')}">             <a ui-sref="docs.show({'doc': 'service-configuration'})" href="https://apacheignite.readme.io/docs/service-configuration" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['service-configuration'].edited" class="icon icon-pencil4 ng-hide"></span>Service Configuration</a><ul class="subpages"></ul></li></ul><h3>Distributed Data Structures</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a58')}">             <a ui-sref="docs.show({'doc': 'data-structures'})" href="https://apacheignite.readme.io/docs/data-structures" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['data-structures'].edited" class="icon icon-pencil4 ng-hide"></span>Data Structures</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a59')}">             <a ui-sref="docs.show({'doc': 'queue-and-set'})" href="https://apacheignite.readme.io/docs/queue-and-set" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['queue-and-set'].edited" class="icon icon-pencil4 ng-hide"></span>Queue and Set</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5a')}">             <a ui-sref="docs.show({'doc': 'atomic-types'})" href="https://apacheignite.readme.io/docs/atomic-types" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['atomic-types'].edited" class="icon icon-pencil4 ng-hide"></span>Atomic Types</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5b')}">             <a ui-sref="docs.show({'doc': 'countdownlatch'})" href="https://apacheignite.readme.io/docs/countdownlatch" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['countdownlatch'].edited" class="icon icon-pencil4 ng-hide"></span>CountDownLatch</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5c')}">             <a ui-sref="docs.show({'doc': 'id-generator'})" href="https://apacheignite.readme.io/docs/id-generator" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['id-generator'].edited" class="icon icon-pencil4 ng-hide"></span>ID Generator</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5d')}">             <a ui-sref="docs.show({'doc': 'distributed-semaphore'})" href="https://apacheignite.readme.io/docs/distributed-semaphore" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['distributed-semaphore'].edited" class="icon icon-pencil4 ng-hide"></span>Semaphore</a><ul class="subpages"></ul></li></ul><h3>In-Memory File System</h3><ul><li><a href="https://apacheignite-fs.readme.io/docs/in-memory-file-system" data-sidebar="in-memory-file-system" target="_blank" class="sidebar-link"><span>In-Memory File System</span><div class="fa fa-external-link-square external"></div></a></li></ul><h3>Messaging &amp; Events</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a11')}">             <a ui-sref="docs.show({'doc': 'messaging'})" href="https://apacheignite.readme.io/docs/messaging" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['messaging'].edited" class="icon icon-pencil4 ng-hide"></span>Topic Based Messaging</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a12')}">             <a ui-sref="docs.show({'doc': 'events'})" href="https://apacheignite.readme.io/docs/events" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['events'].edited" class="icon icon-pencil4 ng-hide"></span>Local and Remote Events</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a13')}">             <a ui-sref="docs.show({'doc': 'automatic-batching'})" href="https://apacheignite.readme.io/docs/automatic-batching" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['automatic-batching'].edited" class="icon icon-pencil4 ng-hide"></span>Automatic Batching</a><ul class="subpages"></ul></li></ul><h3>Legal</h3><ul><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5e')}">             <a ui-sref="docs.show({'doc': 'license'})" href="https://apacheignite.readme.io/docs/license" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['license'].edited" class="icon icon-pencil4 ng-hide"></span>Apache License</a><ul class="subpages"></ul></li><li ng-class="{'subnav-expanded' : isActive('595fdafbaa55b7001b713a5f')}">             <a ui-sref="docs.show({'doc': 'copyright'})" href="https://apacheignite.readme.io/docs/copyright" ui-sref-alt="" class="text-overflow"><span ng-show="suggestedEdits.edited['copyright'].edited" class="icon icon-pencil4 ng-hide"></span>Copyright</a><ul class="subpages"></ul></li></ul></div><div ng-show="state.current().root == 'discuss'" class="ng-hide"><!--a.btn.btn-primary.btn-full.btn-lg(href="" ui-sref="discuss.create") Ask A Question--><h3>Support</h3></div><div ng-show="state.current().root == 'reference' || state.current().root == 'preview'" class="ng-hide"><div class="disabled-warning"><i class="icon icon-notification"></i> Only admins can see this<a href="http://dash.readme.io/project/apacheignite/v2.1/dashboard" target="_blank">Enable it for everyone <i class="fa fa-chevron-right"></i></a></div></div><div ng-show="state.current().root == 'reference-edit'" class="ng-hide"></div><div ng-show="state.current().root == 'blog'" class="ng-hide"><h3>Recent Posts</h3><ul><li><a ui-sref="blog.show({'blog': 'ignite-forum-is-moved'})" class="text-overflow" href="https://apacheignite.readme.io/blog/ignite-forum-is-moved">Ignite Forum is Moved</a></li><li><a ui-sref="blog.show({'blog': 'welcome-to-apache-ignite'})" class="text-overflow" href="https://apacheignite.readme.io/blog/welcome-to-apache-ignite">Welcome to Apache Ignite</a></li></ul><h3>Archive</h3><ul><li><a ui-sref="blog.archive({'year': '2016', 'month': 'January'})" class="text-overflow" href="https://apacheignite.readme.io/blog/2016/January">January 2016 (1)</a></li></ul><ul><li><a ui-sref="blog.archive({'year': '2015', 'month': 'February'})" class="text-overflow" href="https://apacheignite.readme.io/blog/2015/February">February 2015 (1)</a></li></ul></div></div></div><div class="nano-pane"><div class="nano-slider" style="height: 85px; transform: translate(0px, 319.34px);"></div></div></div></div></nav></div><section id="hub-content"><div state-container="" ng-class="{loading: contentLoading}" class="hub-content-container" data-state-container="true"><meta name="meta:slug" content="jdbc-driver" class="compiled ng-scope"><meta name="meta:type" content="docs" class="ng-scope"><meta name="meta:parent" class="ng-scope"><meta name="meta:title" content="JDBC Driver" class="ng-scope"><meta name="meta:description" content="Connect to Ignite using standard JDBC driver." class="ng-scope"><meta name="meta:_id" content="595fdafbaa55b7001b713a2b" class="ng-scope"><meta name="meta:hidden" class="ng-scope"><!-- ngIf: !suggestedEdits.isEnabled --><div ng-if="!suggestedEdits.isEnabled" class="ng-scope"><header id="content-head"><div class="row clearfix"><div class="col-xs-9"><h1>JDBC Driver</h1><div class="excerpt"><p>Connect to Ignite using standard JDBC driver.</p>
+</div></div><div class="col-xs-3"><a ng-click="suggestedEdits.enable()" href="" class="suggestEdits"><i class="icon icon-register"></i>Suggest Edits</a></div></div></header><div id="content-container" scroll-spy="" class="grid-container-fluid ng-scope"><section ng-class="{&quot;grid-75&quot;: false != true &amp;&amp; ss.toc.length , &quot;grid-100&quot;: false != false || !ss.toc.length}" class="content-body grid-75">
+<!-- Gah, you have to manually restart the app if you change this!-->
+<div class="magic-block-textarea"><p>Ignite is shipped with JDBC drivers that allow processing distributed data using standard SQL  statements like <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code> or <code>DELETE</code> directly from the JDBC side. </p>
+<p>Presently, there are two drivers supported by Ignite - the 
+lightweight and easy to use JDBC Thin Driver and the one that interacts 
+with the cluster by means of a <a href="https://apacheignite.readme.io/docs/clients-vs-servers" ui-sref="docs.show({'doc': 'clients-vs-servers'})" class="doc-link" data-sidebar="clients-vs-servers">client node</a>. This documentation explains how to set up and use both:</p>
+<ul>
+<li><a href="#jdbc-thin-driver" target="_self">JDBC Thin Driver</a></li><li><a href="#jdbc-client-node-driver" target="_self">JDBC Client Node Driver</a></li><li><a href="#example" target="_self">Example</a></li></ul>
+
+</div>
+<div class="magic-block-api-header">
+	<h1 class="header-scroll is-api-header"><span id="jdbc-thin-driver"></span>
+		<div id="section-jdbc-thin-driver" class="anchor waypoint"></div>JDBC Thin Driver<a href="#section-jdbc-thin-driver" class="fa fa-anchor"></a>
+	</h1>
+</div>
+<div class="magic-block-textarea"><p>The JDBC Thin driver is lightweight and easy to use from an application side. To start using the driver, just add <code>ignite-core-{version}.jar</code> to the classpath of the application. </p>
+<p>The driver connects to one of the cluster nodes and forwards all the 
+queries to it for final execution. The node takes care of the query 
+distribution and result's aggregations. Then, the result is sent back  
+to the client application.</p>
+<p>In order to let the cluster node accept requests from JDBC Thin Driver,  <code>SqlConnectorConfiguration</code> needs to be added to <code>IgniteConfiguration</code>. </p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+		<li><a href="" ng-click="showCode(1)" ng-class="{active: (1 == tab)}">XML</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-variable">IgniteConfiguration</span> <span class="cm-variable">cfg</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">IgniteConfiguration</span>()
+    .<span class="cm-variable">setSqlConnectorConfiguration</span>(<span class="cm-keyword">new</span> <span class="cm-variable">SqlConnectorConfiguration</span>());</span></code></pre><!-- end ngIf: tab == 0 -->
+		<!-- ngIf: tab == 1 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>The configuration enables the SQL connector on the cluster node that will bind to a local network interface on port <code>10800</code>.</p>
+<p>The following properties allow to change the behavior of the SQL connector:</p>
+
+</div>
+<div class="magic-block-parameters">
+	<div class="block-parameters-table">
+		<div class="table">
+			<div class="tr">
+				<div class="th">Properties</div>
+				<div class="th">Description</div>
+				<div class="th">Default</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>host</code></p>
+</div>
+				<div class="td"><p>Host name or IP address to bind to. When set to <code>null</code>, <code>IgniteConfigiration.localHost</code> will be used.</p>
+</div>
+				<div class="td"><p>null</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>port</code></p>
+</div>
+				<div class="td"><p>Port to bind to. If the specified port is already in use, Ignite will try to find another available port using <code>portRange</code> property.</p>
+</div>
+				<div class="td"><p>10800</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>portRange</code></p>
+</div>
+				<div class="td"><p>Defines number of ports to try to bind to. E.g. if port is set to <code>10800</code> and port range is <code>100</code>, Ignite will try to find available port within <code>[10800, 10900]</code> range, starting with <code>10800</code>.</p>
+</div>
+				<div class="td"><p>100</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>maxOpenCursorsPerConnection</code></p>
+</div>
+				<div class="td"><p>Maximum number of open server cursors per 
+connection. If exceeded, an exception will be thrown when trying to open
+ another cursor.</p>
+</div>
+				<div class="td"><p>128</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>threadPoolSize</code></p>
+</div>
+				<div class="td"><p>Number of threads dedicated for query execution.</p>
+</div>
+				<div class="td"><p>MAX(8, CPU cores)</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>socketSendBufferSize</code></p>
+</div>
+				<div class="td"><p>Socket send buffer size. When set to <code>0</code>, OS default is used.</p>
+</div>
+				<div class="td"><p>0</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>socketReceiveBufferSize</code></p>
+</div>
+				<div class="td"><p>Socket receive buffer size. When set to <code>0</code>, OS default is used.</p>
+</div>
+				<div class="td"><p>0</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>tcpNoDelay</code></p>
+</div>
+				<div class="td"><p>Whether to use <code>TCP_NODELAY</code> option or not.</p>
+</div>
+				<div class="td"><p>true</p>
+</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-jdbc-connection"></div>JDBC Connection<a class="fa fa-anchor" href="#section-jdbc-connection"></a></h2>
+<p>JDBC connection string has the following pattern:</p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">SQL</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo">jdbc:ignite:thin://host[:port][?&lt;params&gt;]</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><ul>
+<li><code>host</code> is required and defines host of the cluster node to connect to.</li><li><code>port</code> to connect to. <code>10800</code> is used by default if this parameter is omitted.</li><li><code>&lt;params&gt;</code> are optional and have the following below:</li></ul>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">SQL</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo">param1=value1?param2=value2?...:paramN=valueN</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>Supported parameters:</p>
+
+</div>
+<div class="magic-block-parameters">
+	<div class="block-parameters-table">
+		<div class="table">
+			<div class="tr">
+				<div class="td"><p><code>distributedJoins</code></p>
+</div>
+				<div class="td"><p>Whether to use distributed joins for non collocated data or not.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>enforceJoinOrder</code></p>
+</div>
+				<div class="td"><p>Whether to enforce join order of tables in the query or not. If set to <code>true</code> query optimizer will not reorder tables in join.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>collocated</code></p>
+</div>
+				<div class="td"><p>Whether your data is co-located or not. Whenever 
+Ignite executes a distributed query, it sends sub-queries to individual 
+cluster members. If you know in advance that the elements of your query 
+selection are collocated together on the same node, Ignite can make 
+significant performance and network optimizations.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>replicatedOnly</code></p>
+</div>
+				<div class="td"><p>Whether query contains only replicated tables or not. This is a hint for potentially more effective execution.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>autoCloseServerCursor</code></p>
+</div>
+				<div class="td"><p>Whether to close server-side cursor automatically when last piece of result set is retrieved or not. When enabled, a call to <code>ResultSet.close()</code>
+ will not require a network call, what could improve performance. 
+However, if the server-side cursor is already closed, you may get an 
+exception when trying to call  <code>ResultSet.getMetadata()</code> method. This is why it defaults to <code>false</code>.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>socketSendBuffer</code></p>
+</div>
+				<div class="td"><p>Socket send buffer size. When set to <code>0</code>, OS default will be used.</p>
+</div>
+				<div class="td"><p>0</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>socketReceiveBuffer</code></p>
+</div>
+				<div class="td"><p>Socket receive buffer size. When set to <code>0</code>, OS default will be used.</p>
+</div>
+				<div class="td"><p>0</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>tcpNoDelay</code></p>
+</div>
+				<div class="td"><p>Whether to use <code>TCP_NODELAY</code> option.</p>
+</div>
+				<div class="td"><p>true</p>
+</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-connection-string-examples"></div>Connection String Examples<a class="fa fa-anchor" href="#section-connection-string-examples"></a></h2>
+<ul>
+<li><code>jdbc:ignite:thin://myHost</code> - connect to <code>myHost</code> on the port <code>10800</code> with all defaults</li><li><code>jdbc:ignite:thin://myHost:11900</code> - connect to <code>myHost</code> on custom port <code>11900</code> with all defaults</li><li><code>jdbc:ignite:thin://myHost:11900?distributedJoins=true&amp;autoCloseServerCursor=true</code> - connect to <code>myHost</code> on custom port <code>11900</code> with enabled distributed joins and <code>autoCloseServerCursor</code> optimization.</li></ul>
+
+</div>
+<div class="magic-block-api-header">
+	<h1 class="header-scroll is-api-header"><span id="jdbc-client-node-driver"></span>
+		<div id="section-jdbc-client-node-driver" class="anchor waypoint"></div>JDBC Client Node Driver<a href="#section-jdbc-client-node-driver" class="fa fa-anchor"></a>
+	</h1>
+</div>
+<div class="magic-block-textarea"><p>JDBC Client Node Driver connects to the cluster using its own full-fledged <a href="https://apacheignite.readme.io/docs/clients-vs-servers" ui-sref="docs.show({'doc': 'clients-vs-servers'})" class="doc-link" data-sidebar="clients-vs-servers">client node</a>
+ connection. This requires users to provide a complete Spring XML 
+configuration as part of the JDBC connection string and copy all the jar
+ files below to the classpath of your application or SQL tool:</p>
+<ul>
+<li>All the jars under <code>{apache_ignite_release}\libs</code> directory.</li><li>All the jars under <code>{apache_ignite_release}\ignite-indexing</code> and <code>{apache_ignite_release}\ignite-spring</code> directories. </li></ul>
+<p>The driver is more heavyweight and might not support the latest SQL 
+features of Ignite but since it uses the client node connection 
+underneath, it can execute, distribute queries, and aggregate their 
+results directly from the application side.</p>
+<p>The JDBC connection URL has the following pattern:</p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">XML</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo">jdbc:ignite:cfg://[<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">params</span><span class="cm-tag cm-bracket">&gt;</span>@]<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">config_url</span><span class="cm-tag cm-bracket">&gt;</span></span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><ul>
+<li><code>&lt;config_url&gt;</code> is required and represents any valid
+ URL that points to an Ignite configuration file for Ignite client node.
+ This node will be started within the Ignite JDBC Client Node Driver 
+when it (JDBC driver) tries to establish a connection with the cluster. </li><li><code>&lt;params&gt;</code> is optional and has the following format:</li></ul>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Text</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code>param1=value1:param2=value2:...:paramN=valueN</code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>The following parameters are supported:</p>
+
+</div>
+<div class="magic-block-parameters">
+	<div class="block-parameters-table">
+		<div class="table">
+			<div class="tr">
+				<div class="th">Properties</div>
+				<div class="th">Description</div>
+				<div class="th">Default</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>cache</code></p>
+</div>
+				<div class="td"><p>Cache name. If it is not defined the default cache will be used. Note that the cache name is case sensitive.</p>
+</div>
+				<div class="td"></div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>nodeId</code></p>
+</div>
+				<div class="td"><p>ID of node where query will be executed. It can be useful for querying through local caches.</p>
+</div>
+				<div class="td"></div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>local</code></p>
+</div>
+				<div class="td"><p>Query will be executed only on a local node. Use this parameter with <code>nodeId</code> parameter in order to limit data set by specified node.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>collocated</code></p>
+</div>
+				<div class="td"><p>Flag that is used for optimization purposes. 
+Whenever Ignite executes a distributed query, it sends sub-queries to 
+individual cluster members. If you know in advance that the elements of 
+your query selection are collocated together on the same node, Ignite 
+can make significant performance and network optimizations.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>distributedJoins</code></p>
+</div>
+				<div class="td"><p>Allows use distributed joins for non collocated data.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>streaming</code></p>
+</div>
+				<div class="td"><p>Turns on bulk data load mode via <code>INSERT</code> statements for this connection. Refer to <a href="#streaming-mode" target="_self">Streaming Mode</a> section for more details.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>streamingAllowOverwrite</code></p>
+</div>
+				<div class="td"><p>Tells Ignite to overwrite values for existing keys on duplication instead of skipping them. Refer to <a href="#streaming-mode" target="_self">Streaming Mode</a> section for more details.</p>
+</div>
+				<div class="td"><p>false</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>streamingFlushFrequency</code></p>
+</div>
+				<div class="td"><p>Timeout, in <em>milliseconds</em>, that data streamer should use to flush data. By default, <em>the data is flushed on connection close</em>. Refer to <a href="#streaming-mode" target="_self">Streaming Mode</a> section for more details.</p>
+</div>
+				<div class="td"><p>0</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>streamingPerNodeBufferSize</code></p>
+</div>
+				<div class="td"><p>Data streamer's per node buffer size. Refer to <a href="#streaming-mode" target="_self">Streaming Mode</a> section for more details.</p>
+</div>
+				<div class="td"><p>1024</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>streamingPerNodeParallelOperations</code></p>
+</div>
+				<div class="td"><p>Data streamer's per node parallel operations number. Refer to <a href="#streaming-mode" target="_self">Streaming Mode</a> section for more details.</p>
+</div>
+				<div class="td"><p>16</p>
+</div>
+			</div>
+			<div class="tr">
+				<div class="td"><p><code>transactionsAllowed</code></p>
+</div>
+				<div class="td"><p>Presently ACID Transactions are supported, but 
+only at key-value API level. At SQL level Ignite supports atomic, but 
+not yet transactional consistency.</p>
+<p>It means that the JDBC driver might throw <code>Transactions are not supported</code> if you try to use this functionality.</p>
+<p>However, some of BI tools might force the transactional behavior all 
+the times preventing you from issuing SQL read queries. Set this 
+parameter to <code>true</code> to overcome the requirement if the transactions are not of your interest.</p>
+<p>In general, Ignite community plans to implement SQL transactions in version 2.2.</p>
+</div>
+				<div class="td"><p><code>false</code></p>
+</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="magic-block-callout type-info ">
+	<h3><i title="Info" class="fa fa-info-circle"></i>Cross-Cache Queries
+	</h3>
+	<div class="callout-body"><p>Cache that the driver is connected to is treated as the default schema. To query across multiple caches, <a href="https://apacheignite.readme.io/docs/cache-queries#cross-cache-queries" target="_self">Cross-Cache Query</a> functionality can be used.</p>
+
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-streaming-mode"></div>Streaming Mode<a class="fa fa-anchor" href="#section-streaming-mode"></a></h2>
+<p>It's feasible to add data into an Ignite cluster in a streaming mode 
+(bulk mode) using the JDBC driver. In this mode, the driver instantiates
+ <code>IgniteDataStreamer</code> internally and feeds data to it. To activate this mode, add <code>streaming</code> parameter set to <code>true</code> to a JDBC connection string:</p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Register JDBC driver.</span>
+<span class="cm-variable">Class</span>.<span class="cm-variable">forName</span>(<span class="cm-string">"org.apache.ignite.IgniteJdbcDriver"</span>);
+ 
+<span class="cm-comment">// Opening connection in the streaming mode.</span>
+<span class="cm-variable">Connection</span> <span class="cm-variable">conn</span> <span class="cm-operator">=</span> <span class="cm-variable">DriverManager</span>.<span class="cm-variable">getConnection</span>(<span class="cm-string">"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml"</span>);</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>Presently, the streaming mode is 
+supported only for INSERT operations. This is useful for cases when you 
+want to achieve fast data preloading into a cache. The JDBC driver 
+defines multiple connection parameters that affect the behavior of the 
+streaming mode. These parameters are listed in the parameters table 
+above.</p>
+<p>The parameters cover almost all settings of a general <code>IgniteDataStreamer</code> and allow you to fine tune the streamer according to your needs. Please refer to the <a href="https://apacheignite.readme.io/docs/data-streamers" ui-sref="docs.show({'doc': 'data-streamers'})" class="doc-link" data-sidebar="data-streamers">Data Streamers</a> section of Ignite docs for more information on how to configure the streamer.</p>
+
+</div>
+<div class="magic-block-callout type-info ">
+	<h3><i title="Info" class="fa fa-info-circle"></i>Time Based Flushing
+	</h3>
+	<div class="callout-body"><p>By default, the data is flushed when either a connection is closed or  <code>streamingPerNodeBufferSize</code> is met. If you need to flush the data in a timely manner, then adjust the <code>streamingFlushFrequency</code> parameter.</p>
+
+	</div>
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Register JDBC driver.</span>
+<span class="cm-variable">Class</span>.<span class="cm-variable">forName</span>(<span class="cm-string">"org.apache.ignite.IgniteJdbcDriver"</span>);
+ 
+<span class="cm-comment">// Opening a connection in the streaming mode and time based flushing set.</span>
+<span class="cm-variable">Connection</span> <span class="cm-variable">conn</span> <span class="cm-operator">=</span> <span class="cm-variable">DriverManager</span>.<span class="cm-variable">getConnection</span>(<span class="cm-string">"jdbc:ignite:cfg://streaming=true@streamingFlushFrequency=1000@file:///etc/config/ignite-jdbc.xml"</span>);
+
+<span class="cm-variable">PreparedStatement</span> <span class="cm-variable">stmt</span> <span class="cm-operator">=</span> <span class="cm-variable">conn</span>.<span class="cm-variable">prepareStatement</span>(
+  <span class="cm-string">"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)"</span>);
+
+<span class="cm-comment">// Adding the data.</span>
+<span class="cm-keyword">for</span> (<span class="cm-variable-3">int</span> <span class="cm-variable">i</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>; <span class="cm-variable">i</span> <span class="cm-operator">&lt;</span> <span class="cm-number">100000</span>; <span class="cm-variable">i</span><span class="cm-operator">++</span>) {
+      <span class="cm-comment">// Inserting a Person object with a Long key.</span>
+      <span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">1</span>, <span class="cm-variable">i</span>);
+      <span class="cm-variable">stmt</span>.<span class="cm-variable">setString</span>(<span class="cm-number">2</span>, <span class="cm-string">"John Smith"</span>);
+      <span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">3</span>, <span class="cm-number">25</span>);
+  
+      <span class="cm-variable">stmt</span>.<span class="cm-variable">execute</span>();
+}
+
+<span class="cm-variable">conn</span>.<span class="cm-variable">close</span>();
+
+<span class="cm-comment">// Beyond this point, all data is guaranteed to be flushed into the cache.</span></span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-api-header">
+	<h1 class="header-scroll is-api-header"><span id="example"></span>
+		<div id="section-example" class="anchor waypoint"></div>Example<a href="#section-example" class="fa fa-anchor"></a>
+	</h1>
+</div>
+<div class="magic-block-textarea"><p>To start processing the data located in the cluster, you need to create a JDBC <code>Connection</code> object using one of the methods below:</p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">JDBC Thin Driver</a></li>
+		<li><a href="" ng-click="showCode(1)" ng-class="{active: (1 == tab)}">JDBC Client Node Driver</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Register JDBC driver.</span>
+<span class="cm-variable">Class</span>.<span class="cm-variable">forName</span>(<span class="cm-string">"org.apache.ignite.IgniteJdbcDriver"</span>);
+ 
+<span class="cm-comment">// Open the JDBC connection.</span>
+<span class="cm-variable">Connection</span> <span class="cm-variable">conn</span> <span class="cm-operator">=</span> <span class="cm-variable">DriverManager</span>.<span class="cm-variable">getConnection</span>(<span class="cm-string">"`jdbc:ignite:thin://192.168.0.50"</span>);</span></code></pre><!-- end ngIf: tab == 0 -->
+		<!-- ngIf: tab == 1 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>Right after that you can execute SQL <code>SELECT</code> queries of your choice:</p>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Query names of all people.</span>
+<span class="cm-variable">ResultSet</span> <span class="cm-variable">rs</span> <span class="cm-operator">=</span> <span class="cm-variable">conn</span>.<span class="cm-variable">createStatement</span>().<span class="cm-variable">executeQuery</span>(<span class="cm-string">"select name from Person"</span>);
+ 
+<span class="cm-keyword">while</span> (<span class="cm-variable">rs</span>.<span class="cm-variable">next</span>()) {
+    <span class="cm-variable-3">String</span> <span class="cm-variable">name</span> <span class="cm-operator">=</span> <span class="cm-variable">rs</span>.<span class="cm-variable">getString</span>(<span class="cm-number">1</span>);
+    ...
+}
+ 
+<span class="cm-comment">// Query people with specific age using prepared statement.</span>
+<span class="cm-variable">PreparedStatement</span> <span class="cm-variable">stmt</span> <span class="cm-operator">=</span> <span class="cm-variable">conn</span>.<span class="cm-variable">prepareStatement</span>(<span class="cm-string">"select name, age from Person where age = ?"</span>);
+ 
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">1</span>, <span class="cm-number">30</span>);
+ 
+<span class="cm-variable">ResultSet</span> <span class="cm-variable">rs</span> <span class="cm-operator">=</span> <span class="cm-variable">stmt</span>.<span class="cm-variable">executeQuery</span>();
+ 
+<span class="cm-keyword">while</span> (<span class="cm-variable">rs</span>.<span class="cm-variable">next</span>()) {
+    <span class="cm-variable-3">String</span> <span class="cm-variable">name</span> <span class="cm-operator">=</span> <span class="cm-variable">rs</span>.<span class="cm-variable">getString</span>(<span class="cm-string">"name"</span>);
+    <span class="cm-variable-3">int</span> <span class="cm-variable">age</span> <span class="cm-operator">=</span> <span class="cm-variable">rs</span>.<span class="cm-variable">getInt</span>(<span class="cm-string">"age"</span>);
+    ...
+}</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><p>Moreover, you can modify the data with the usage of DML statements.</p>
+<h2 class="header-scroll"><div class="anchor waypoint" id="section-insert"></div>INSERT<a class="fa fa-anchor" href="#section-insert"></a></h2>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Insert a Person with a Long key.</span>
+<span class="cm-variable">PreparedStatement</span> <span class="cm-variable">stmt</span> <span class="cm-operator">=</span> <span class="cm-variable">conn</span>.<span class="cm-variable">prepareStatement</span>(<span class="cm-string">"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)"</span>);
+ 
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">1</span>, <span class="cm-number">1</span>);
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setString</span>(<span class="cm-number">2</span>, <span class="cm-string">"John Smith"</span>);
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">3</span>, <span class="cm-number">25</span>);
+
+<span class="cm-variable">stmt</span>.<span class="cm-variable">execute</span>();</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-merge"></div>MERGE<a class="fa fa-anchor" href="#section-merge"></a></h2>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Merge a Person with a Long key.</span>
+<span class="cm-variable">PreparedStatement</span> <span class="cm-variable">stmt</span> <span class="cm-operator">=</span> <span class="cm-variable">conn</span>.<span class="cm-variable">prepareStatement</span>(<span class="cm-string">"MERGE INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)"</span>);
+ 
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">1</span>, <span class="cm-number">1</span>);
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setString</span>(<span class="cm-number">2</span>, <span class="cm-string">"John Smith"</span>);
+<span class="cm-variable">stmt</span>.<span class="cm-variable">setInt</span>(<span class="cm-number">3</span>, <span class="cm-number">25</span>);
+ 
+<span class="cm-variable">stmt</span>.<span class="cm-variable">executeUpdate</span>();</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-update"></div>UPDATE<a class="fa fa-anchor" href="#section-update"></a></h2>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-comment">// Update a Person.</span>
+<span class="cm-variable">conn</span>.<span class="cm-variable">createStatement</span>().
+  <span class="cm-variable">executeUpdate</span>(<span class="cm-string">"UPDATE Person SET age = age + 1 WHERE age = 25"</span>);</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div>
+<div class="magic-block-textarea"><h2 class="header-scroll"><div class="anchor waypoint" id="section-delete"></div>DELETE<a class="fa fa-anchor" href="#section-delete"></a></h2>
+
+</div>
+<div class="magic-block-code ng-scope">
+	<ul class="block-code-header">
+		<li><a href="" ng-click="showCode(0)" ng-class="{active: (0 == tab)}" class="active">Java</a></li>
+	</ul>
+	<div class="block-code-code">
+		<!-- ngIf: tab == 0 --><pre ng-if="tab == 0" class="ng-scope"><code><span class="cm-s-neo"><span class="cm-variable">conn</span>.<span class="cm-variable">createStatement</span>().<span class="cm-variable">execute</span>(<span class="cm-string">"DELETE FROM Person WHERE age = 25"</span>);</span></code></pre><!-- end ngIf: tab == 0 -->
+	</div>
+</div></section><section ng-show="ss.toc.length" class="content-toc grid-25"><!-- ngIf: stickyTOC --><div id="sticky0-sticky-wrapper" class="sticky-wrapper is-sticky"><div sticky="66" ng-if="stickyTOC" class="sticky-toc ng-scope" id="sticky0" style="width: 192px; position: fixed; top: 66px;"><nav><div class=""><ul><li ng-show="ss.toc.length"><a href="" ng-click="scrollTo()" class="tocHeader"><i class="icon icon-text-align-left"></i>Table of Contents</a></li><!-- ngRepeat: toc in ss.toc --><li ng-repeat="toc in ss.toc" class="toc-DIV"> <a href="" ng-click="scrollTo(toc[0])" class="ng-binding">
+		JDBC Thin Driver
+	</a></li><!-- end ngRepeat: toc in ss.toc --><li ng-repeat="toc in ss.toc" class="toc-DIV"> <a href="" ng-click="scrollTo(toc[0])" class="ng-binding">
+		JDBC Client Node Driver
+	</a></li><!-- end ngRepeat: toc in ss.toc --><li ng-repeat="toc in ss.toc" class="toc-DIV"> <a href="" ng-click="scrollTo(toc[0])" class="ng-binding">
+		Example
+	</a></li><!-- end ngRepeat: toc in ss.toc --></ul></div></nav></div></div><!-- end ngIf: stickyTOC --><!-- ngIf: !stickyTOC --></section></div></div><!-- end ngIf: !suggestedEdits.isEnabled --><!-- ngIf: suggestedEdits.isEnabled --></div></section></div></div><!-- Logo--><footer><div class="hub-container"><div id="readmeLogo"><a href="https://readme.io/?ref_src=hub&amp;project=apacheignite" class="icon icon-readme"></a></div></div></footer><script>var is_hub = true;
+var is_hub2 = true;
+var is_hub_edit = true;
+</script><script src="JDBC%20Driver_files/bundle-hub2.js"></script><!-- Google Analytics--><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-52479696-1', 'auto');
+ga('send', 'pageview');
+
+$(window).on('pageLoad', function(e, state){
+  ga('send', 'pageview', window.location.pathname);
+});
+</script><script>ga('create', 'UA-61232409-1', 'auto', {'name': 'custom'});
+ga('custom.send', 'pageview');
+$(window).on('pageLoad', function(e, state){
+  ga('custom.send', 'pageview', window.location.pathname);
+});
+
+</script><div id="nspopover-1" class="ns-popover-dropdown-theme ns-popover-bottom-placement ns-popover-right-align ng-scope" style="position: absolute; display: none;"><div id="hub-user-dropdown" class="ns-popover-tooltip"><div class="ns-triangle"></div><div class="triangle"></div><ul><li ng-show="user.isAdmin" class="ng-hide"><a href="https://dash.readme.io/project/apacheignite/v2.1/dashboard"> <i class="fa fa-lock"></i>Admin Panel</a></li><li><a ng-href="/logout?redirect_uri=docs/jdbc-driver" target="_self" href="https://apacheignite.readme.io/logout?redirect_uri=docs/jdbc-driver"> <i class="fa fa-power-off"></i>Log out</a></li></ul></div></div></body></html>

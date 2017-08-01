@@ -1,0 +1,136 @@
+Hello Ignite
+[10:30:42]    __________  ________________ 
+[10:30:42]   /  _/ ___/ |/ /  _/_  __/ __/ 
+[10:30:42]  _/ // (7 7    // /  / / / _/   
+[10:30:42] /___/\___/_/|_/___/ /_/ /___/  
+[10:30:42] 
+[10:30:42] ver. 2.0.0#20170430-sha1:d4eef3c6
+[10:30:42] 2017 Copyright(C) Apache Software Foundation
+[10:30:42] 
+[10:30:42] Ignite documentation: http://ignite.apache.org
+[10:30:42] 
+[10:30:42] Quiet mode.
+[10:30:42]   ^-- Logging to file '/opt/apache-ignite-fabric-2.0.0-bin/work/log/ignite-f9be099a.0.log'
+[10:30:42]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[10:30:42] 
+[10:30:42] OS: Linux 4.11.9-1-ARCH amd64
+[10:30:42] VM information: Java(TM) SE Runtime Environment 1.8.0_141-b15 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.141-b15
+[10:30:42] Initial heap size is 250MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[10:30:42] Configured plugins:
+[10:30:42]   ^-- None
+[10:30:42] 
+[10:30:42] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[10:30:42] Security status [authentication=off, tls/ssl=off]
+[10:30:45] Performance suggestions for grid  (fix if possible)
+[10:30:45] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[10:30:45]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[10:30:45]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[10:30:45]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[10:30:45] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[10:30:45] 
+[10:30:45] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[10:30:45] 
+[10:30:45] Ignite node started OK (id=f9be099a)
+[10:30:45] Topology snapshot [ver=6, servers=1, clients=0, CPUs=4, heap=0.89GB]
+Cache get:1
+Cache get:2
+Cache get:3
+Cache get:4
+Cache get:5
+Cache get:6
+Cache get:7
+Cache get:8
+Cache get:9
+Cache get:10
+Cache get:11
+Cache get:12
+Cache get:13
+Cache get:14
+Cache get:15
+Cache get:16
+Cache get:17
+Cache get:18
+Cache get:19
+Cache get:20
+Cache get:21
+Cache get:22
+Cache get:23
+Cache get:24
+Cache get:25
+Cache get:26
+Cache get:27
+Cache get:28
+Cache get:29
+Cache get:30
+Cache get:31
+Cache get:32
+Cache get:33
+Cache get:34
+Cache get:35
+Cache get:36
+Cache get:37
+Cache get:38
+Cache get:39
+Cache get:40
+Cache get:41
+Cache get:42
+Cache get:43
+Cache get:44
+Cache get:45
+Cache get:46
+Cache get:47
+Cache get:48
+Cache get:49
+Cache get:50
+Cache get:51
+Cache get:52
+Cache get:53
+Cache get:54
+Cache get:55
+Cache get:56
+Cache get:57
+Cache get:58
+Cache get:59
+Cache get:60
+Cache get:61
+Cache get:62
+Cache get:63
+Cache get:64
+Cache get:65
+Cache get:66
+Cache get:67
+Cache get:68
+Cache get:69
+Cache get:70
+Cache get:71
+Cache get:72
+Cache get:73
+Cache get:74
+Cache get:75
+Cache get:76
+Cache get:77
+Cache get:78
+Cache get:79
+Cache get:80
+Cache get:81
+Cache get:82
+Cache get:83
+Cache get:84
+Cache get:85
+Cache get:86
+Cache get:87
+Cache get:88
+Cache get:89
+Cache get:90
+Cache get:91
+Cache get:92
+Cache get:93
+Cache get:94
+Cache get:95
+Cache get:96
+Cache get:97
+Cache get:98
+Cache get:99
+Cache get:100
+[11:08:47] Topology snapshot [ver=9, servers=2, clients=0, CPUs=4, heap=1.9GB]
+[11:36:10] Ignite node stopped OK [uptime=01:05:24:515]
