@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chapter2.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h1 id="ignite">Структура ignite</h1>
+<p><img src="igniteParts.png" alt="arcitecture"></p>
+<ul>
+<li>все ноды равнозначны, нет никаких мастер-нод
+<img src="clientServer.png" alt="clientServer"></li>
+</ul>
+<h1 id="">Топология кластера</h1>
+<ul>
+<li>
+<p>Клиентские ноды могут выполнять рассчеты, более того можно создать клстер
+в котором серверные ноды будут только хранить данные, а клинентские ноды их обрабатывать.
+<img src="clientWork.png" alt="clientWork"></p>
+</li>
+<li>
+<p>Ноды ignite могут быть</p>
+<ol>
+<li>
+<p>embedded<br>
+<img src="embedded.png" alt="embedded"></p>
+</li>
+<li>
+<p>in separate jvm<br>
+<img src="separate.png" alt="separate"></p>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="-2">Топология кеша</h1>
+<ul>
+<li>
+<p>Типы топологий</p>
+<ol>
+<li>Partitioned (топология по умолчанию) - данные кеша разбиты с избыточностью по нодам кластера.
+<img src="partitionedCache.png" alt="partitionedCache"></li>
+<li>Replicated - все данные хранятся на всех нодах - очень быстрый доступ к данным. Недостаток - каждая
+нова порция данных должна быть скопирована на все ноды - медленные апдейты. Подходит для быстрого доступа
+к небольшим редко изменяемым данным.</li>
+</ol>
+<p><img src="replicatedCache.png" alt="replicated"></p>
+<ol start="3">
+<li>Local - очень быстрый и хорошо подходит для read\wrtite-through кеша.</li>
+</ol>
+<h1 id="-3">Стратегии использования кеша</h1>
+<ol>
+<li>cache-aside - приложение само пишет данные в БД и обновлять кеш. Например если в кеше нет данных
+то они читаются приложением и записываются в кеш. При обновлении данных в БД приложение само обновляет кеш.</li>
+<li>Read-through and Write-through - приложение пишет и читает данные только из кеша. Кеш сам взаимодействует с БД.
+<img src="rw.png" alt="rw"></li>
+<li>Write behind - операции записи аггрегируются и асинхронно отправляются в дисковое хранилище.
+<img src="wb.png" alt="wb"></li>
+</ol>
+</li>
+</ul>
+<h1 id="-4">Модель данных</h1>
+<ul>
+<li>Ignite использует хранилище типа key-value.
+<img src="javaCaching.png" alt="javaCaching"></li>
+</ul>
+<h1 id="cap">CAP</h1>
+<pre><code>1. Consistency - все ноды имеют одни и теже данные.
+2. Availability - клиент может читать и писать
+3. Partitioning tolerance - система поддерживает партицирование, при выходе одной ноды з строя
+система все еще работоспособна
+</code></pre>
+<p>CA - базы данных, AP - cassandra и тп.</p>
+<ul>
+<li>Ignite modes:
+<ol>
+<li>Transactional - можно группировать коммманды (DML) в транзакцию и коммтить ее, будут использоваться
+пессиместические блокировки</li>
+<li>Atomic - каждая комманда (DML) может выполниться успешно либо не успешно, блокировок нет.
+<img src="cap.png" alt="cap"></li>
+</ol>
+</li>
+</ul>
+<h1 id="cluster-groups">Cluster groups</h1>
+<ul>
+<li>В ignite все ноды равноценны но можно создать логическую группу. Например сгруппируем ноды
+обслуживающие myCache:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">IgniteCluster cluster = ignite.cluster();
+<span class="hljs-comment">// All the data nodes responsible for caching data for "myCache".</span>
+ClusterGroup dataGroup = cluster.forDataNodes(<span class="hljs-string">"myCache"</span>);
+</code></pre>
+<ul>
+<li>Ноды в Ignite можно также сгруппировать по аттрибутам - master,worker,data nodes</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-comment">//запуск мастер-ноды</span>
+IgniteConfiguration cfg = <span class="hljs-keyword">new</span> IgniteConfiguration();
+Map&lt;String, String&gt; attrs = Collections.singletonMap(<span class="hljs-string">"ROLE"</span>, <span class="hljs-string">"master"</span>);
+cfg.setUserAttributes(attrs);
+<span class="hljs-comment">// Start Ignite node.</span>
+Ignite ignite = Ignition.start(cfg);
+<span class="hljs-comment">//далее можно получить все мастер ноды</span>
+IgniteCluster cluster = ignite.cluster();
+ClusterGroup workerGroup = cluster.forAttribute(<span class="hljs-string">"ROLE"</span>, <span class="hljs-string">"master"</span>);
+Collection&lt;GridNode&gt; workerNodes = workerGroup.nodes();
+</code></pre>
+<h1 id="sql-">Выполнение SQL-запросов</h1>
+<ul>
+<li>В партицированном кластере запросы выполняются в виде map-reduce работ</li>
+<li>В реплицированном кластере запросы выполняются используя H2 бд</li>
+</ul>
+<h1 id="-5">Асинхронные методы</h1>
+<ul>
+<li>Асинхронне методы возвращают IgniteFuture<T> который имеет метод get - это тн promise -
+обещание вернуть результат. Метод IgniteFuture.listen(FunctionalInterface) неблокирующий
+и выполняется по готовности. Примеры кода в project-installation модуле.</li>
+</ul>
+<h1 id="resilence">Resilence</h1>
+<ul>
+<li>Термин означает скорейшее восстановление после сбоя, например нода будет
+автоподключаться к кластеру в случае сбоя.</li>
+</ul>
+<h1 id="api">API</h1>
+<p><img src="api.png" alt="api"></p>
+
+</div></body>
+</html>

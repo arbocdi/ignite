@@ -12,7 +12,8 @@ curl -O http://apache-mirror.rbc.ru/pub/apache/ignite/2.1.0/apache-ignite-fabric
 unzip apache-ignite-fabric-2.1.0-bin.zip  -d /opt
 
 to ~/.profile
-yf
+export IGNITE_HOME=YOUR_IGNITE_HOME_PATH
+export PATH=$PATH:$JAVA_HOME/bin:$IGNITE_HOME/bin:$HOME/bin
 source ~/.profile
 Copy the folder $IGNITE_HOME/libs/optional/ignite-rest-http to IGNITE_HOME/libs, this will
 enable the Ignite rest interface. Run ignite.sh in your any favorite terminal, which will run the
@@ -48,13 +49,14 @@ http://localhost:8080/ignite?cmd=get&key=moscow&cacheName=testCache
 
 ```
 * Можно получить сразу несколько значений из кеша
-zzxz
 ```
 http://localhost:8080/ignite?cmd=getall&k1=moscow&k2=vladimir&k3=tver&cacheName=testCache
+```
 
-```
-* для использования tcpv4 в java клиенте и в ignite.sh должно стоять:
+* для использования tcpv4 в java клиенте и в ignite.sh должно стоять
 ```java
--Djava.net.preferIPv4Stack=true
+ -Djava.net.preferIPv4Stack=true
 ```
+
 * по умолчанию ignite выбирает порты 47500, 47501 etc.
+* тестовый javaclient находится в ignite-book-code-samples/chapters/chapter-installation/
