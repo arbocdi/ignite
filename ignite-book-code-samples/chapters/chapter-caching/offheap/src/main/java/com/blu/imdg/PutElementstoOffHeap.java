@@ -14,11 +14,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PutElementstoOffHeap {
     public static void main(String[] args) throws Exception{
-        if(args.length <= 0){
-            System.out.println("Usages! java -jar .\\target\\chapter-three-offheap-1.0-SNAPSHOT.one-jar.jar spring-offheap-tiered.xml");
-            System.exit(0);
-        }
-        String springCoreFile = args[0];
+//        if(args.length <= 0){
+//            System.out.println("Usages! java -jar .\\target\\chapter-three-offheap-1.0-SNAPSHOT.one-jar.jar spring-offheap-tiered.xml");
+//            System.exit(0);
+//        }
+        String springCoreFile = "spring-onheap-tiered.xml";
         // Start Ignite cluster
         Ignite ignite = Ignition.start(springCoreFile);
         // get or create cache

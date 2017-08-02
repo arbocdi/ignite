@@ -50,6 +50,7 @@
 # Cluster groups
 * В ignite все ноды равноценны но можно создать логическую группу. Например сгруппируем ноды
 обслуживающие myCache:
+![cg](clusterGroup.png)
 ```java
 IgniteCluster cluster = ignite.cluster();
 // All the data nodes responsible for caching data for "myCache".

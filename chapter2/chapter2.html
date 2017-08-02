@@ -437,7 +437,8 @@ pre { white-space: pre-wrap !important; word-break: break-word !important; overf
 <h1 id="cluster-groups">Cluster groups</h1>
 <ul>
 <li>В ignite все ноды равноценны но можно создать логическую группу. Например сгруппируем ноды
-обслуживающие myCache:</li>
+обслуживающие myCache:
+<img src="clusterGroup.png" alt="cg"></li>
 </ul>
 <pre><code class="hljs github-gist-css java">IgniteCluster cluster = ignite.cluster();
 <span class="hljs-comment">// All the data nodes responsible for caching data for "myCache".</span>
