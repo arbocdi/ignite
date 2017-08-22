@@ -1,0 +1,4 @@
+dependencies{
+    compile group: 'org.apache.ignite', name: 'ignite-indexing', version: '1.6.0'
+    compile group: 'org.apache.ignite', name: 'ignite-indexing', version: '1.6.0',classifier:'javadoc'
+}

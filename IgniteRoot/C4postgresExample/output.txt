@@ -1,0 +1,55 @@
+[14:30:52]    __________  ________________ 
+[14:30:52]   /  _/ ___/ |/ /  _/_  __/ __/ 
+[14:30:52]  _/ // (7 7    // /  / / / _/   
+[14:30:52] /___/\___/_/|_/___/ /_/ /___/  
+[14:30:52] 
+[14:30:52] ver. 1.6.0#20160518-sha1:0b22c45b
+[14:30:52] 2016 Copyright(C) Apache Software Foundation
+[14:30:52] 
+[14:30:52] Ignite documentation: http://ignite.apache.org
+[14:30:52] 
+[14:30:52] Quiet mode.
+[14:30:52]   ^-- Logging to file '/opt/apache-ignite-fabric-1.6.0-bin/work/log/ignite-4777bf97.0.log'
+[14:30:52]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[14:30:52] 
+[14:30:52] OS: Linux 4.12.3-1-ARCH amd64
+[14:30:52] VM information: Java(TM) SE Runtime Environment 1.8.0_144-b01 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.144-b01
+[14:30:52] Initial heap size is 250MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[14:30:52] Configured plugins:
+[14:30:52]   ^-- None
+[14:30:52] 
+[14:30:53] Security status [authentication=off, tls/ssl=off]
+[14:30:56] Performance suggestions for grid  (fix if possible)
+[14:30:56] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[14:30:56]   ^-- Enable ATOMIC mode if not using transactions (set 'atomicityMode' to ATOMIC)
+[14:30:56] 
+[14:30:56] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[14:30:56] 
+[14:30:56] Ignite node started OK (id=4777bf97)
+[14:30:56] Topology snapshot [ver=1, servers=1, clients=0, CPUs=4, heap=0.89GB]
+Clear every odd key: 1
+Clear every odd key: 3
+Clear every odd key: 5
+Clear every odd key: 7
+Clear every odd key: 9
+Local peek at [key=_1, val=null]
+Local peek at [key=_2, val=Post(id=_2, title=title-2, description=description-2, creationDate=2017-08-24, author=author-2)]
+Local peek at [key=_3, val=null]
+Local peek at [key=_4, val=Post(id=_4, title=title-4, description=description-4, creationDate=2017-08-26, author=author-4)]
+Local peek at [key=_5, val=null]
+Local peek at [key=_6, val=Post(id=_6, title=title-6, description=description-6, creationDate=2017-08-28, author=author-6)]
+Local peek at [key=_7, val=null]
+Local peek at [key=_8, val=Post(id=_8, title=title-8, description=description-8, creationDate=2017-08-30, author=author-8)]
+Local peek at [key=_9, val=null]
+Local peek at [key=_10, val=Post(id=_10, title=title-10, description=description-10, creationDate=2017-09-01, author=author-10)]
+Got [key=_1, val=null]
+Got [key=_2, val=Post(id=_2, title=title-2, description=description-2, creationDate=2017-08-24, author=author-2)]
+Got [key=_3, val=null]
+Got [key=_4, val=Post(id=_4, title=title-4, description=description-4, creationDate=2017-08-26, author=author-4)]
+Got [key=_5, val=null]
+Got [key=_6, val=Post(id=_6, title=title-6, description=description-6, creationDate=2017-08-28, author=author-6)]
+Got [key=_7, val=null]
+Got [key=_8, val=Post(id=_8, title=title-8, description=description-8, creationDate=2017-08-30, author=author-8)]
+Got [key=_9, val=null]
+Got [key=_10, val=Post(id=_10, title=title-10, description=description-10, creationDate=2017-09-01, author=author-10)]
+[14:30:56] Ignite node stopped OK [uptime=00:00:00:611]

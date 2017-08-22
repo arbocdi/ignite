@@ -1,0 +1,47 @@
+apply plugin: 'base'
+subprojects {
+    
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    apply plugin: 'maven'
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "file:///root/.m2/repository")
+            }
+        }
+    }
+    
+    task libs(type: Copy) {
+        into "$buildDir/libs"
+        from configurations.runtime
+    }
+    
+   
+    
+    
+    sourceCompatibility = 1.8
+    compileJava.options.encoding = 'UTF-8'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    
+    dependencies {
+        compile group: 'org.apache.ignite', name: 'ignite-core', version: '1.6.0'
+        compile group: 'org.apache.ignite', name: 'ignite-core', version: '1.6.0',classifier: 'javadoc'
+        compile group: 'org.apache.ignite', name: 'ignite-spring', version: '1.6.0'
+        compile group: 'org.apache.ignite', name: 'ignite-spring', version: '1.6.0',classifier: 'javadoc'
+        compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+         compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18',classifier: 'javadoc'
+        testCompile group: 'junit', name: 'junit', version: '4.10'
+        testCompile group: 'junit', name: 'junit', version: '4.10',classifier: 'javadoc'
+    }
+    
+    group = 'net.sf.arbocdi'
+    version = '0.1-SNAPSHOT'
+}
+

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IgniteC4Persistence.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h1 id="persistence">Persistence</h1>
+<ul>
+<li>Ignite реализует интерфейсы CacheLoader и CacheWriter из спецификации JCache.
+<img src="cacheStore.png" alt="cacheStore"></li>
+<li>Частые обновления кеша могут привести к большим нагрузкам в persistence storage
+для решения этой проблемы хорошо подходит write-behind кеш - который аккумилирует
+обновления и затем отправляет их в бд.
+<img src="wb.png" alt="wb"></li>
+<li>Критерии, приводящие обновлению данный в write-behind mode:
+<ol>
+<li>Временные - вышло максимальное время нахождения объекта в очереди на запись</li>
+<li>Размерные - очередь записывается на диск по достижению опр размера</li>
+<li>Комбинаия 1 и 2то</li>
+</ol>
+</li>
+<li>при сипользовании write-behind только последнее обновление одного и того же ключа
+попадет в persistence-хранилище.</li>
+</ul>
+<h1 id="persistence-with-postgres">Persistence with postgres</h1>
+<ul>
+<li>см пример postgesExample</li>
+</ul>
+<h1 id="cache-queries">Cache queries</h1>
+<ul>
+<li>
+<p>Типы запросов:</p>
+<ol>
+<li>SqlQuery - sql запрос</li>
+<li>TextQuery - позволяет искать сущности по тексту</li>
+<li>QueryCursor - позволяет итерировать по страницам,не потоково безопасен
+и должен закрываться полсле использования.</li>
+<li>ScanQuery  - возвразает результат по предикату
+(предикат - это выражение возвращающее true\false)</li>
+</ol>
+<ul>
+<li>IgniteBiPredicate - это функциональый интерфейс принимающий на вход ключ
+и значение - возвращает boolean - будет ли выбрана эта запись. Используется в
+ScanQuery.
+(см C4CacheQueries)</li>
+</ul>
+</li>
+</ul>
+<h3 id="">Текстовые запросы</h3>
+<p>(см С4SqlQueries)</p>
+<ul>
+<li>Ignite использует Lucene для текстовых запросов.</li>
+<li>Документ в Lucene это экземпляр для индексации и поиска, сущность БД - это
+документ для Lucine.</li>
+<li>Lucene использует инвертированный индекс - страница состоит из слов - а Lucene
+привязывает слова к страницам.
+<img src="invertedIndex.png" alt="iv"></li>
+<li>Чтобы включить поле в lucene-индекс его надо аннотировать @QueryTextField.
+Можно аннотировать не сами поля а get-методы.</li>
+</ul>
+<h3 id="sql-">SQL-запросы</h3>
+<p>(см C4SqlQueries)</p>
+<ul>
+<li>Выполнение <b>Joins</b> представляет собой нетривиальную задачу, достоверные
+ответы могут быть получены если данные collocated - то находятся на той же
+ноде что и join-запрос. <b>Replicated cache</b> лишен этого недостатка - тк все данные
+хранятся на всех нодах.</li>
+<li>Для иллюстрации джоинов будет использовано простое отношение
+<img src="empDep.png" alt="ed"></li>
+<li>Для использования SQL-запросов поля сущности аннотируется через @QuerySqlField
+либо сама сущность через @Queryentity.</li>
+<li>Для каждой сущности SqL есть 2 предопределенных поля _key и _val - это ключ и значение
+в игнайт кеше. И можно выполнять запросы вида:</li>
+</ul>
+<pre><code class="hljs github-gist-css sql"> <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Employee <span class="hljs-keyword">WHERE</span> _key = <span class="hljs-number">100</span>
+</code></pre>
+<ul>
+<li>Создание индеса по полю @QuerySqlField(index=true)</li>
+<li>Пример создания запроса, SqlQuery всегда возвращает всю сущность:</li>
+</ul>
+<pre><code class="hljs github-gist-css sql">SqlQuery&lt;EmployeeKey, Employee&gt; empSal = new SqlQuery(Employee.class, "sal&gt;?");
+empSal.setArgs(1000);
+</code></pre>
+<ul>
+<li>SqlFieldsQuery -возвращает не все поля, а только запрошенные. В курсоре будет массив имен:</li>
+</ul>
+<pre><code class="hljs github-gist-css sql">SqlFieldsQuery empSalName = new SqlFieldsQuery("<span class="hljs-keyword">SELECT</span> e.ename <span class="hljs-keyword">FROM</span> Employee e <span class="hljs-keyword">WHERE</span> sal &gt; ?<span class="hljs-string">");
+empSalName.setArgs("</span><span class="hljs-number">2000</span><span class="hljs-string">");
+</span></code></pre>
+<h3 id="-2">Распределеные объединения.</h3>
+<ul>
+<li>При использовании Replicated -кеша афинные ключи не нужны.</li>
+<li>Employee и соотв ему Department могут располагаться на разных нодах в Partitioned кеше
+чтобы избежать этого и хранить их совместно на одной ноду Employee имеет так называемый
+афинный ключ:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> empNo;
+    <span class="hljs-meta">@AffinityKeyMapped</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> deptNo;
+</code></pre>
+<p>При использовании афинного ключа и соотв collocated Join обработка запроса выглядит так:
+<img src="cjoin.png" alt="cjoin"></p>
+<ul>
+<li>Имя кеша выступает в качетве схемы в Ignite, имя схемы берется а двойные кавычки.</li>
+</ul>
+<h3 id="non-colocated-joins">Non-colocated joins</h3>
+<ul>
+<li>Если данные необходимые для выполнения джоин-запроса не содержатся в одной ноде,
+то они будут запрошены из других нод кластера. Для включения такого режима нужно:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">SqlQuery.setDistributedJoins(<span class="hljs-keyword">true</span>);
+</code></pre>
+<p>Естественно такой запрос будет выполнятся медленнее из-за доп сетевого траффика.
+Афинный ключ в этом случае не требуется.
+<img src="nonCjoin.png" alt="nonCjoin"></p>
+<h3 id="expiration-eviction">Истечение времени жизни (Expiration) и удаление элементов (Eviction)</h3>
+<ul>
+<li>Expiration ignite содержит множество политик, определяющих срок жизни элемента.
+По умолчанию ни одна из политик не активна.
+<img src="expiration.png" alt="expiration"></li>
+<li>Класс Duration определяет время жизни елемента</li>
+</ul>
+<pre><code class="hljs github-gist-css java">Ignite ignite = Ignition.start(CLIENT_CONFIG);
+CacheConfiguration cacheConfiguration = <span class="hljs-keyword">new</span> CacheConfiguration(<span class="hljs-string">"myCacheConfig"</span>);
+cacheConfiguration.setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.FIVE_MINUTES));
+ignite.getOrCreateCache(cacheConfiguration);
+
+</code></pre>
+<ul>
+<li>Eviction - это алгоритм, определяющий какие эелементы нужно удалить если кеш полон.
+Можно определить Evicion по числу элементов или по размеру памяти кеша.</li>
+<li>LRU policy поддерживает удаление по макс числу елементов и по макс памяти кеша</li>
+</ul>
+<pre><code class="hljs github-gist-css java">CacheConfiguration cacheCfg = <span class="hljs-keyword">new</span> CacheConfiguration();
+cacheCfg.setName(<span class="hljs-string">"cacheName"</span>);
+<span class="hljs-comment">// Set the maximum cache size to 1 million (default is 100,000).</span>
+cacheCfg.setEvictionPolicy(<span class="hljs-keyword">new</span> LruEvictionPolicy(<span class="hljs-number">1000000</span>));
+IgniteConfiguration cfg = <span class="hljs-keyword">new</span> IgniteConfiguration();
+cfg.setCacheConfiguration(cacheCfg);
+<span class="hljs-comment">// Start Ignite node.</span>
+Ignition.start(cfg);
+
+</code></pre>
+<ul>
+<li>FIFO - first in - first out поддерживает удаление по макс числу елементов и по макс памяти кеша</li>
+</ul>
+<pre><code class="hljs github-gist-css java">CacheConfiguration cacheCfg = <span class="hljs-keyword">new</span> CacheConfiguration();
+cacheCfg.setName(<span class="hljs-string">"cacheName"</span>);
+<span class="hljs-comment">// Set the maximum cache size to 1 million (default is 100,000).</span>
+cacheCfg.setEvictionPolicy(<span class="hljs-keyword">new</span> FifoEvictionPolicy(<span class="hljs-number">1000000</span>));
+IgniteConfiguration cfg = <span class="hljs-keyword">new</span> IgniteConfiguration();
+cfg.setCacheConfiguration(cacheCfg);
+<span class="hljs-comment">// Start Ignite node.</span>
+Ignition.start(cfg);
+
+</code></pre>
+<h3 id="-3">Транзакции</h3>
+<ul>
+<li>atomic (поумолчаню комманды выполняются по отдельности), transactional (группой),
+определяется на уровне кеша. (см C4PostgesExample)</li>
+<li>Ignite транзакии могут охватывать сразу несколько кешей.</li>
+<li>Если в транзакции возникают ошибки - она автоматом откатывается.</li>
+<li>Методы запуска тразакций:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">ignite().transactions().txStart();<span class="hljs-comment">//свойства транзакции берутся из TransactionConfiguration</span>
+<span class="hljs-comment">//TransactionConfiguration - одержит свойства транзакций по умолчанию</span>
+txStart(TransactionConcurrency concurrency, TransactionIsolation isolation);
+<span class="hljs-comment">//new transaction with the specified concurrency and isolation.</span>
+
+</code></pre>
+<ul>
+<li>TransactionConcurrency= PESSIMISTIC or OPTIMISTIC.</li>
+<li>TransactionIsolation =  READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE</li>
+<li>1-phase commit используется если в кеше не более 2-х Replicated узлов с одной
+бекап копией
+<img src="1p2nodes.png" alt="2nodes"></li>
+<li>2-phase commit работает если есть несколько backup-копий
+Клиент инициирует коммит-&gt; primary ноды (они хранят осн копию) получают prepare message -&gt; primary nods
+налагают блокировки на primary copy-&gt; primay nods шлют prepare message  всем копиям-&gt; по получению
+положительного ответа от всех копий начинаетя запись данных в копии а потом и в осн. копию.
+<img src="2phase.png" alt="2p"></li>
+</ul>
+<h3 id="optimistic-mode">Optimistic mode</h3>
+<ul>
+<li>Блокировки накладываются в начале на осн копии а потом и на бекапы на шаге prepare</li>
+<li>Блокировки не накладываются если пользователь не закоммитил транзакцию</li>
+<li>READ_COMMITTED - операции чтения не накладывают никаких блокировок, прочитав одни и теже
+данные 2 раза в течении транзакции можно получить разные результаты.Изменяемые данные копятся
+и записываются только в конце транзакции с использованием блокировок.</li>
+<li>REPEATABLE_READ - чтение не накладывает блокировок но прочитанные данные кешируются,
+прочитав 2 раза одни и теже данные - всегда получим один и тот же результат</li>
+<li>SERIALIZABLE - если хотябы один элемент транзакции модифицирован до коммита - то
+выбросим исключение</li>
+</ul>
+<h3 id="pessimistic-mode">Pessimistic mode</h3>
+<ul>
+<li>Блокровки накладываются при первом доступе к объекту в начале на основные копии а потом
+и на дополнительные на шаге prepare</li>
+<li>READ_COMMITTED - возможны не повторяемые чтения(блокировок на чтение нет), при записи блокировки накладываются сразу.</li>
+<li>REPEATABLE_READ - блокировки накладываются на чтение и на запись. Данные транзакии кешируются
+локально и ниодна транзакция не может менять прочитанные или записанные в этой транзакции данные.</li>
+<li>SERIALIZABLE = REPEATABLE_READ</li>
+<li>Backup update mode - синхронный\асинхронный. В асинхронном режиме tx.commit(); не будет
+дожидаться подтверждения записи от других нод.</li>
+</ul>
+
+</div></body>
+</html>

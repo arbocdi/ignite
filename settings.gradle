@@ -1,3 +1,0 @@
-//submodules defined here
-include 'javaClient'
-rootProject.name = 'IgniteExample'

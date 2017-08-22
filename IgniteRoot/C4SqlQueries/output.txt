@@ -1,0 +1,70 @@
+[15:21:39]    __________  ________________ 
+[15:21:39]   /  _/ ___/ |/ /  _/_  __/ __/ 
+[15:21:39]  _/ // (7 7    // /  / / / _/   
+[15:21:39] /___/\___/_/|_/___/ /_/ /___/  
+[15:21:39] 
+[15:21:39] ver. 1.6.0#20160518-sha1:0b22c45b
+[15:21:39] 2016 Copyright(C) Apache Software Foundation
+[15:21:39] 
+[15:21:39] Ignite documentation: http://ignite.apache.org
+[15:21:39] 
+[15:21:39] Quiet mode.
+[15:21:39]   ^-- Logging to file '/opt/apache-ignite-fabric-1.6.0-bin/work/log/ignite-2e3b0d32.0.log'
+[15:21:39]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[15:21:39] 
+[15:21:39] OS: Linux 4.12.3-1-ARCH amd64
+[15:21:39] VM information: Java(TM) SE Runtime Environment 1.8.0_144-b01 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.144-b01
+[15:21:39] Initial heap size is 250MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[15:21:39] Configured plugins:
+[15:21:39]   ^-- None
+[15:21:39] 
+[15:21:39] Security status [authentication=off, tls/ssl=off]
+[15:21:41] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[15:21:41] 
+[15:21:41] Ignite node started OK (id=2e3b0d32)
+[15:21:41] Topology snapshot [ver=1, servers=1, clients=0, CPUs=4, heap=0.89GB]
+===============================
+EmployeeKey(empNo=1, deptNo=1)	Employee(empno=1, ename=King, job=President, mgr=null, hiredate=1981-11-17, sal=5000, deptno=1, key=EmployeeKey(empNo=1, deptNo=1))
+EmployeeKey(empNo=2, deptNo=3)	Employee(empno=2, ename=Blake, job=Manager, mgr=1, hiredate=1981-05-01, sal=2850, deptno=3, key=EmployeeKey(empNo=2, deptNo=3))
+EmployeeKey(empNo=3, deptNo=1)	Employee(empno=3, ename=Clark, job=Manager, mgr=1, hiredate=1981-06-09, sal=2450, deptno=1, key=EmployeeKey(empNo=3, deptNo=1))
+EmployeeKey(empNo=4, deptNo=2)	Employee(empno=4, ename=Jones, job=Manager, mgr=1, hiredate=1981-04-02, sal=2975, deptno=2, key=EmployeeKey(empNo=4, deptNo=2))
+EmployeeKey(empNo=5, deptNo=2)	Employee(empno=5, ename=Scott, job=Analyst, mgr=4, hiredate=1987-04-19, sal=3000, deptno=2, key=EmployeeKey(empNo=5, deptNo=2))
+EmployeeKey(empNo=6, deptNo=2)	Employee(empno=6, ename=Ford, job=Analyst, mgr=4, hiredate=1981-12-03, sal=3000, deptno=2, key=EmployeeKey(empNo=6, deptNo=2))
+EmployeeKey(empNo=8, deptNo=3)	Employee(empno=8, ename=Allen, job=Salesman, mgr=2, hiredate=1981-02-20, sal=1600, deptno=3, key=EmployeeKey(empNo=8, deptNo=3))
+EmployeeKey(empNo=9, deptNo=3)	Employee(empno=9, ename=Ward, job=Salesman, mgr=2, hiredate=1981-02-22, sal=1250, deptno=3, key=EmployeeKey(empNo=9, deptNo=3))
+EmployeeKey(empNo=10, deptNo=3)	Employee(empno=10, ename=Martin, job=Salesman, mgr=2, hiredate=1981-09-28, sal=1250, deptno=3, key=EmployeeKey(empNo=10, deptNo=3))
+EmployeeKey(empNo=11, deptNo=3)	Employee(empno=11, ename=Turner, job=Salesman, mgr=2, hiredate=1981-09-08, sal=1500, deptno=3, key=EmployeeKey(empNo=11, deptNo=3))
+EmployeeKey(empNo=12, deptNo=2)	Employee(empno=12, ename=Adams, job=Clerk, mgr=5, hiredate=1987-05-23, sal=1100, deptno=2, key=EmployeeKey(empNo=12, deptNo=2))
+EmployeeKey(empNo=14, deptNo=1)	Employee(empno=14, ename=Miller, job=Clerk, mgr=3, hiredate=1982-01-23, sal=1300, deptno=1, key=EmployeeKey(empNo=14, deptNo=1))
+===============================
+[King, President]	class java.util.ArrayList
+[Blake, Manager]	class java.util.ArrayList
+[Clark, Manager]	class java.util.ArrayList
+[Jones, Manager]	class java.util.ArrayList
+[Scott, Analyst]	class java.util.ArrayList
+[Ford, Analyst]	class java.util.ArrayList
+===============================
+EmployeeKey(empNo=2, deptNo=3)	Employee(empno=2, ename=Blake, job=Manager, mgr=1, hiredate=1981-05-01, sal=2850, deptno=3, key=EmployeeKey(empNo=2, deptNo=3))
+EmployeeKey(empNo=8, deptNo=3)	Employee(empno=8, ename=Allen, job=Salesman, mgr=2, hiredate=1981-02-20, sal=1600, deptno=3, key=EmployeeKey(empNo=8, deptNo=3))
+EmployeeKey(empNo=9, deptNo=3)	Employee(empno=9, ename=Ward, job=Salesman, mgr=2, hiredate=1981-02-22, sal=1250, deptno=3, key=EmployeeKey(empNo=9, deptNo=3))
+EmployeeKey(empNo=10, deptNo=3)	Employee(empno=10, ename=Martin, job=Salesman, mgr=2, hiredate=1981-09-28, sal=1250, deptno=3, key=EmployeeKey(empNo=10, deptNo=3))
+EmployeeKey(empNo=11, deptNo=3)	Employee(empno=11, ename=Turner, job=Salesman, mgr=2, hiredate=1981-09-08, sal=1500, deptno=3, key=EmployeeKey(empNo=11, deptNo=3))
+EmployeeKey(empNo=13, deptNo=3)	Employee(empno=13, ename=James, job=Clerk, mgr=2, hiredate=1981-12-03, sal=950, deptno=3, key=EmployeeKey(empNo=13, deptNo=3))
+===============================
+[2073.2142857142857142857142857]	class java.util.ArrayList
+===============================
+[King, Accounting]	class java.util.ArrayList
+[Clark, Accounting]	class java.util.ArrayList
+[Miller, Accounting]	class java.util.ArrayList
+[Jones, Research]	class java.util.ArrayList
+[Scott, Research]	class java.util.ArrayList
+[Ford, Research]	class java.util.ArrayList
+[Smith, Research]	class java.util.ArrayList
+[Adams, Research]	class java.util.ArrayList
+[Blake, Sales]	class java.util.ArrayList
+[Allen, Sales]	class java.util.ArrayList
+[Ward, Sales]	class java.util.ArrayList
+[Martin, Sales]	class java.util.ArrayList
+[Turner, Sales]	class java.util.ArrayList
+[James, Sales]	class java.util.ArrayList
+[15:21:44] Ignite node stopped OK [uptime=00:00:02:494]
